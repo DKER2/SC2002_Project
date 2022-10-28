@@ -32,7 +32,7 @@ public class Admin_Controller {
         SerializeDB.writeSerializedObject(FILENAME, Data);
     }
 
-    public void deleteAdmin(String Username) {
+    public static void deleteAdmin(String Username) {
         ArrayList<Admin> Data = new ArrayList<Admin>();
 
         Data = getAllAdmins();
@@ -50,7 +50,7 @@ public class Admin_Controller {
         SerializeDB.writeSerializedObject(FILENAME, UpdateData);
     }
 
-    public void updateAdmin(int choice, String Username, String newData) {
+    public static void updateAdmin(int choice, String Username, String newData) {
         ArrayList<Admin> Data = getAllAdmins();
         ArrayList<Admin> UpdateData = new ArrayList<Admin>();
         Admin m;
@@ -73,5 +73,25 @@ public class Admin_Controller {
         }
 
         SerializeDB.writeSerializedObject(FILENAME, UpdateData);
+    }
+
+    public static boolean signIn(String Username, String Password){
+        ArrayList<Admin> Data = new ArrayList<Admin>();
+
+        Data = getAllAdmins();
+
+        boolean exist = false;
+
+        for(int i=0; i<Data.size(); i++){
+            if(Data.get(i).getUsername()==Username && Data.get(i).getPassword()==Password){
+                exist = true;
+            }
+        }
+
+        return exist;
+    }
+
+    public static void signUp(String Username, String Password){
+        addAdmins(Username, Password);
     }
 }
