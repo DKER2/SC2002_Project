@@ -1,7 +1,5 @@
 package src.Control;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import src.Entity.Admin;
@@ -10,6 +8,8 @@ import src.utils.SerializeDB;
 public class Admin_Controller {
     public final static String FILENAME = "././data/admin.txt";
     public final static String SEPARATOR = "|";
+    final static int CHANGE_USERNAME = 1;
+    final static int CHANGE_PASSWORD = 2;
 
     public Admin_Controller(){
 
@@ -45,6 +45,31 @@ public class Admin_Controller {
             if (!(a.getUsername() == Username)) {
                 UpdateData.add(a);
             }
+        }
+
+        SerializeDB.writeSerializedObject(FILENAME, UpdateData);
+    }
+
+    public void updateAdmin(int choice, String Username, String newData) {
+        ArrayList<Admin> Data = getAllAdmins();
+        ArrayList<Admin> UpdateData = new ArrayList<Admin>();
+        Admin m;
+
+        for (int i = 0; i < Data.size(); i++) {
+            m = Data.get(i);
+            if (m.getUsername() == Username) {
+                switch (choice) {
+                    case CHANGE_USERNAME:
+                        m.setUsername(newData);
+                        break;
+                    case CHANGE_PASSWORD:
+                        m.setPassword(newData);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            UpdateData.add(m);
         }
 
         SerializeDB.writeSerializedObject(FILENAME, UpdateData);
