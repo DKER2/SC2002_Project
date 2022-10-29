@@ -2,6 +2,8 @@ package src.Control;
 
 import java.util.ArrayList;
 
+import src.Boundary.MainMenu;
+import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Entity.Admin;
 import src.utils.SerializeDB;
 
@@ -16,20 +18,39 @@ public class Admin_Controller {
     }
 
     public static ArrayList<Admin> getAllAdmins(){
-        ArrayList<Admin> adminList = new ArrayList<Admin>(SerializeDB.readSerializedObject(FILENAME));
+        ArrayList<Admin> adminList = new ArrayList<Admin>();
+        if(SerializeDB.readSerializedObject(FILENAME) == null){
+            return adminList;
+        }
+        adminList = (ArrayList<Admin>) SerializeDB.readSerializedObject(FILENAME);
         return adminList;
     }
 
-    public static void addAdmins(String Username, String Password){
+    public static boolean addAdmin(String Username, String Password){
         Admin Admin = new Admin(Username, Password);
 
-        ArrayList<Admin> Data = new ArrayList<Admin>();
+        ArrayList<Admin> adminList = new ArrayList<Admin>();
 
-        Data = getAllAdmins();
+        adminList = getAllAdmins();
 
-        Data.add(Admin);
+        boolean exist = false;
 
-        SerializeDB.writeSerializedObject(FILENAME, Data);
+        if(adminList != null){
+            for(int i=0; i<adminList.size(); i++){
+                if(adminList.get(i).getUsername() == Username){
+                    exist = true;
+                }
+            }
+        } else{
+            adminList = new ArrayList<Admin>();
+        }
+
+        if(exist==false){
+            adminList.add(Admin);
+            SerializeDB.writeSerializedObject(FILENAME, adminList);
+        }
+
+        return !exist;
     }
 
     public static void deleteAdmin(String Username) {
@@ -75,7 +96,7 @@ public class Admin_Controller {
         SerializeDB.writeSerializedObject(FILENAME, UpdateData);
     }
 
-    public static boolean signIn(String Username, String Password){
+    public static void signIn(String Username, String Password){
         ArrayList<Admin> Data = new ArrayList<Admin>();
 
         Data = getAllAdmins();
@@ -83,15 +104,31 @@ public class Admin_Controller {
         boolean exist = false;
 
         for(int i=0; i<Data.size(); i++){
-            if(Data.get(i).getUsername()==Username && Data.get(i).getPassword()==Password){
+            if(Data.get(i).getUsername().equals(Username) && Data.get(i).getPassword().equals(Password)){
                 exist = true;
             }
         }
-
-        return exist;
+        
+        if(exist){
+			System.out.println("Login Successfuly");
+			AdminMainMenu.load();
+		}
+		else{
+			System.out.println("Login Fail");
+			MainMenu.load();
+		}
     }
 
     public static void signUp(String Username, String Password){
-        addAdmins(Username, Password);
+        boolean status = addAdmin(Username, Password);
+
+		if(status){
+			System.out.println("Sign Up Successfuly");
+			AdminMainMenu.load();
+		}
+		else{
+			System.out.println("Admin Existed");
+            MainMenu.load();
+		}
     }
 }

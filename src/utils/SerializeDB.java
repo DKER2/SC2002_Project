@@ -12,8 +12,8 @@ import java.util.ArrayList;
 // the Serialized file may fail.
 public class SerializeDB
 {
-	public static List readSerializedObject(String filename) {
-		List pDetails = null;
+	public static Object readSerializedObject(String filename) {
+		Object pDetails = null;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		try {
