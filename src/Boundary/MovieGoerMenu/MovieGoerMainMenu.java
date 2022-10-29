@@ -1,8 +1,8 @@
-package src.Boundary.AdminMenu;
+package src.Boundary.MovieGoerMenu;
 
 import java.util.Scanner;
 
-public class AdminMainMenu {
+public class MovieGoerMainMenu {
     public static void load() {
         System.out.println("Admin");
 		System.out.println("Choose from one of the following options: \n" +
@@ -27,7 +27,6 @@ public class AdminMainMenu {
             case 4:
                 //goBack();
                 break;
+        }
     }
-        
-	}
 }

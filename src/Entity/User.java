@@ -18,11 +18,6 @@ public class User implements Serializable {
     private String password;
 
     /**
-	 * The age of the user
-	 */
-    private Integer age;
-
-    /**
      * This method creates a user object with the given username, password
      * @param username the username of the admain
      * @param password the password of the admin
@@ -30,18 +25,6 @@ public class User implements Serializable {
     public User(String username, String password){
         this.username = username;
         this.password = password;
-    }
-    
-    /**
-     * This method creates a user object with the given username, password
-     * @param username the username of the user
-     * @param password the password of the user
-     * @param age the age of user
-     */
-    public User(String username, String password, Integer age){
-        this.username = username;
-        this.password = password;
-        this.age = age;
     }
 
     /**

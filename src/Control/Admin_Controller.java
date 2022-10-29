@@ -9,7 +9,6 @@ import src.utils.SerializeDB;
 
 public class Admin_Controller {
     public final static String FILENAME = "././data/admin.txt";
-    public final static String SEPARATOR = "|";
     final static int CHANGE_USERNAME = 1;
     final static int CHANGE_PASSWORD = 2;
 
