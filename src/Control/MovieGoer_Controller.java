@@ -12,7 +12,7 @@ import src.Entity.Review;
 import src.utils.SerializeDB;
 
 public class MovieGoer_Controller {
-    public final static String FILENAME = "././data/MovieGoer.txt";
+    public final static String FILENAME = "././data/movieGoer.txt";
     final static int CHANGE_USERNAME = 1;
     final static int CHANGE_PASSWORD = 2;
 

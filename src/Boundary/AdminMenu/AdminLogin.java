@@ -3,7 +3,6 @@ package src.Boundary.AdminMenu;
 import java.util.Scanner;
 
 import src.Control.Admin_Controller;
-import src.Boundary.MainMenu;
 
 public class AdminLogin {
     public static void load() {

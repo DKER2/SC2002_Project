@@ -1,12 +1,13 @@
 package src.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * This class contains all the information of a Movie
  */
 
-public class Movie {
+public class Movie implements Serializable{
     /**
 	* The title of the movie
 	*/
@@ -48,14 +49,13 @@ public class Movie {
      * @param reviewList    list of reviews and ratings that the movie have
      */
     public Movie(String title, CONSTANTS.ShowingStatus showingStatus, 
-    String sysnopsis, String director, ArrayList<String> actorList,
-    ArrayList<Review> review_list){
+    String sysnopsis, String director, ArrayList<String> actorList){
         this.title = title;;
         this.showingStatus = showingStatus;
         this.synopsis = sysnopsis;
         this.director = director;
         this.actorList = actorList;
-        this.review_list = review_list;
+        this.review_list = new ArrayList<Review>();
     }
 
     /**

@@ -7,6 +7,7 @@ public class CONSTANTS {
     public static enum ShowingStatus{
         COMINGSOON,
         PREVIEW,
-        NOWSHOWING
+        NOWSHOWING,
+        ENDOFSHOWING,
     }
 }

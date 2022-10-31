@@ -8,7 +8,6 @@ public class MovieGoer extends User{
     private String email;
     private String phone;
     private Integer age;
-
     private HashMap<Movie, Review> postedReviewsList = new HashMap<Movie, Review>();
     private ArrayList<Booking> bookingList = new ArrayList<Booking>();
 
