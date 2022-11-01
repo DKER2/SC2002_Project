@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import src.Entity.CONSTANTS;
 import src.Entity.Movie;
-import src.Entity.Review;
+import src.Boundary.AdminMenu.AdminMainMenu;
+import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
 import src.utils.SerializeDB;
 
 public class Movie_Controller {
@@ -48,58 +49,84 @@ public class Movie_Controller {
             SerializeDB.writeSerializedObject(FILENAME, MovieList);
         }
 
+        System.out.println("The movie has been added!\n");
+
+        AdminMainMenu.load();
+
         return !exist;
     }
 
-    public static void deleteMovie(String title) {
-        ArrayList<Movie> Data = new ArrayList<Movie>();
+    public static void createMovie(){
+        String title = AdminMainMenu.getTitleFromTerminal();
+        String sysnopsis = AdminMainMenu.getSynopsisFromTerminal();
+        String director = AdminMainMenu.getDirectorFromTerminal();
+        ArrayList<String> actorList = AdminMainMenu.getActorListFromTerminal();
+        CONSTANTS.ShowingStatus showingStatus = AdminMainMenu.getShowingStatusFromTerminal();
+        Movie_Controller.addMovie(title, showingStatus, sysnopsis, director, actorList);
+    }
+    
+    public static void updateMovie() {
+        ArrayList<Movie> movieList = getAllMovies();
 
-        Data = getAllMovies();
+        if (movieList == null || movieList.size() == 0) {
+            System.out.println("\nThere is no movie to remove!\n");
+            return;
+        }
         
-        ArrayList<Movie> UpdateData = new ArrayList<Movie>();
-        Movie a;
-
-        for (int i = 0; i < Data.size(); i++) {
-            a = Data.get(i);
-            if (!(a.getTitle() == title)) {
-                UpdateData.add(a);
-            }
+        int changIndexMovie = AdminMainMenu.getMovieIndexFromTerminal();
+        
+        int choice = AdminMainMenu.getUpdateOptionFromTerminal();
+        
+        Object newData = "";
+        switch(choice) {
+            case 1:
+                newData = AdminMainMenu.getTitleFromTerminal();
+                movieList.get(changIndexMovie).setTitle((String) newData);
+                break;
+            case 2:
+                newData = AdminMainMenu.getSynopsisFromTerminal();
+                movieList.get(changIndexMovie).setSynopsis((String) newData);
+                break;
+            case 3:
+                newData = AdminMainMenu.getDirectorFromTerminal();
+                movieList.get(changIndexMovie).setDirector((String) newData);
+                break;
+            case 4:
+                newData = AdminMainMenu.getActorListFromTerminal();
+                movieList.get(changIndexMovie).setActorList((ArrayList<String>) newData);
+                break;
+            case 5:
+                newData = AdminMainMenu.getShowingStatusFromTerminal();
+                movieList.get(changIndexMovie).setShowingStatus((CONSTANTS.ShowingStatus) newData);
+                break;
+            default:
+                System.out.println("Invalid Choice");
+                break;
         }
 
-        SerializeDB.writeSerializedObject(FILENAME, UpdateData);
+        SerializeDB.writeSerializedObject(FILENAME, movieList);
+
+        System.out.println("The movie has been updated!\n");
+
+        AdminMainMenu.load();
     }
 
-    public static void updateMovie(int choice, String title, Object newData) {
-        ArrayList<Movie> Data = getAllMovies();
-        ArrayList<Movie> UpdateData = new ArrayList<Movie>();
-        Movie m;
+    public static void removeMovie() {
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
-        for (int i = 0; i < Data.size(); i++) {
-            m = Data.get(i);
-            if (m.getTitle() == title) {
-                switch (choice) {
-                    case CHANGE_TITLE:
-                        m.setTitle((String) newData);
-                        break;
-                    case CHANGE_SYSNOPSIS:
-                        m.setSynopsis((String) newData);
-                        break;
-                    case CHANGE_DIRECTOR:
-                        m.setDirector((String) newData);
-                        break;
-                    case CHANGE_ACTOR:
-                        m.setActorList((ArrayList<String>) newData);
-                        break;
-                    case CHANGE_SHOWINGSTATUS:
-                        m.setShowingStatus((CONSTANTS.ShowingStatus) newData);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            UpdateData.add(m);
+        int deleteMovieIndex = AdminMainMenu.getMovieIndexFromTerminal();
+        
+        if (movieList == null || movieList.size() == 0) {
+            System.out.println("\nThere is no movie to remove!\n");
+            return;
         }
+        
+        movieList.remove(deleteMovieIndex);
 
-        SerializeDB.writeSerializedObject(FILENAME, UpdateData);
+        SerializeDB.writeSerializedObject(FILENAME, movieList);
+
+        System.out.println("The movie has been removed!\n");
+
+        AdminMainMenu.load();
     }
 }

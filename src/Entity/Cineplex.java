@@ -9,10 +9,6 @@ public class Cineplex implements Serializable{
 	 */
 	private String cineplexName;
 	/**
-	 * Cineplex Code
-	 */
-	private String CineplexCode;
-	/**
 	 * ArrayList of Cinemas
 	 */
 	private ArrayList<Cinema> cinemas;
@@ -21,16 +17,10 @@ public class Cineplex implements Serializable{
 	 * Constructor for Cineplex Object
 	 * @param cineplexName Cineplex Name
 	 * @param cinemasList ArrayList of cinemas
-	 * @param CineplexCode Cineplex Code
-	 * @param numOfCinema Number of Cinemas
 	 */
-	public Cineplex(String cineplexName,ArrayList<Cinema> cinemasList ,String CineplexCode, int numOfCinema) {
+	public Cineplex(String cineplexName,ArrayList<Cinema> cinemasList) {
 		this.cineplexName = cineplexName;
-		cinemas = new ArrayList<Cinema>();
-		this.CineplexCode = CineplexCode;
-		for (int i=0;i<numOfCinema;i++){
-			cinemas.add(cinemasList.get(i));
-		}
+		this.cinemas = cinemasList;
 	}
 
 	/**
@@ -41,16 +31,7 @@ public class Cineplex implements Serializable{
 	{
 		return cineplexName;
 	}
-	
-	/**
-	 * Gets Cineplex code
-	 * @return cineplex code
-	 */
-	public String getCineplexCode()
-	{
-		return CineplexCode;
-	}
-	
+
 	/**
 	 * Gets ArrayList of cinemas
 	 * @return ArrayList of cinemas
@@ -58,15 +39,6 @@ public class Cineplex implements Serializable{
 	public ArrayList<Cinema> getCinema() 
 	{
 		return cinemas;
-	}
-	
-	/**
-	 * Sets unique cineplex code
-	 * @param code New cineplex code
-	 */
-	public void setCineplexCode(String code)
-	{
-		CineplexCode = code;
 	}
 	
 	/**

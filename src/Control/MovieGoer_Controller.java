@@ -2,10 +2,12 @@ package src.Control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import src.Boundary.MainMenu;
 import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
 import src.Entity.Booking;
+import src.Entity.CONSTANTS;
 import src.Entity.Movie;
 import src.Entity.MovieGoer;
 import src.Entity.Review;
@@ -29,8 +31,8 @@ public class MovieGoer_Controller {
         return movieGoerList;
     }
 
-    public static boolean addMovieGoer(String username, String password, String name, String email, String phone, Integer age, HashMap<Movie,Review> postedReviewsList, ArrayList<Booking> bookingList){
-        MovieGoer movieGoer = new MovieGoer(username, password, name, email, phone, age, postedReviewsList, bookingList);
+    public static boolean addMovieGoer(String username, String password, String name, String email, String phone, Integer age, ArrayList<Booking> bookingList){
+        MovieGoer movieGoer = new MovieGoer(username, password, name, email, phone, age, bookingList);
 
         ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
 
@@ -40,7 +42,7 @@ public class MovieGoer_Controller {
 
         if(movieGoerList != null){
             for(int i=0; i<movieGoerList.size(); i++){
-                if(movieGoerList.get(i).getUsername() == username){
+                if(movieGoerList.get(i).getUsername().equals(username)){
                     exist = true;
                 }
             }
@@ -54,49 +56,6 @@ public class MovieGoer_Controller {
         }
 
         return !exist;
-    }
-
-    public static void deleteMovieGoer(String Username) {
-        ArrayList<MovieGoer> Data = new ArrayList<MovieGoer>();
-
-        Data = getAllMovieGoers();
-        
-        ArrayList<MovieGoer> UpdateData = new ArrayList<MovieGoer>();
-        MovieGoer a;
-
-        for (int i = 0; i < Data.size(); i++) {
-            a = Data.get(i);
-            if (!(a.getUsername() == Username)) {
-                UpdateData.add(a);
-            }
-        }
-
-        SerializeDB.writeSerializedObject(FILENAME, UpdateData);
-    }
-
-    public static void updateMovieGoer(int choice, String Username, String newData) {
-        ArrayList<MovieGoer> Data = getAllMovieGoers();
-        ArrayList<MovieGoer> UpdateData = new ArrayList<MovieGoer>();
-        MovieGoer m;
-
-        for (int i = 0; i < Data.size(); i++) {
-            m = Data.get(i);
-            if (m.getUsername() == Username) {
-                switch (choice) {
-                    case CHANGE_USERNAME:
-                        m.setUsername(newData);
-                        break;
-                    case CHANGE_PASSWORD:
-                        m.setPassword(newData);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            UpdateData.add(m);
-        }
-
-        SerializeDB.writeSerializedObject(FILENAME, UpdateData);
     }
 
     public static void signIn(String Username, String Password){
@@ -123,9 +82,8 @@ public class MovieGoer_Controller {
     }
 
     public static void signUp(String username, String password, String name, String email, String phone, Integer age){
-        HashMap<Movie,Review> postedReviewsList = new HashMap<Movie,Review>();
         ArrayList<Booking> bookingList = new ArrayList<Booking>();
-        boolean status = addMovieGoer(username, password, name, email, phone, age, postedReviewsList, bookingList);
+        boolean status = addMovieGoer(username, password, name, email, phone, age, bookingList);
 
 		if(status){
 			System.out.println("Sign Up Successfuly");
@@ -136,4 +94,94 @@ public class MovieGoer_Controller {
             MainMenu.load();
 		}
     }
+
+    public static void listAllMovie(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+
+        System.out.println();
+        System.out.println("Movie list:");
+        
+        for (int i = 0; i < movieList.size(); i++) {
+            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+        }
+
+        MovieGoerMainMenu.load();
+    }
+
+    public static void searchMovie(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+
+        String searchString = MovieGoerMainMenu.getSearchString();
+
+        ArrayList<Movie> searchResults = new ArrayList<Movie>();
+
+        for(int i=0; i<movieList.size(); i++){
+            if(movieList.get(i).getTitle().contains(searchString) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+                searchResults.add(movieList.get(i));
+            }
+        }
+
+        if(searchResults.size()==0){
+            System.out.println("Do not find a movie with " + searchString);
+        }
+        else{
+            System.out.println("Possible Movie: ");
+            for(int i=0; i<searchResults.size(); i++){
+                System.out.println((i+1) + "." + searchResults.get(i).getTitle());
+            }
+            System.out.println((searchResults.size()+1) + "." + "Go Back");
+
+            int choice = MovieGoerMainMenu.getChoice(searchResults.size()+1);
+
+            if(choice==searchResults.size()+1){
+                MovieGoerMainMenu.load();
+            }
+            else{
+                Movie movie = searchResults.get(choice);
+                System.out.println();
+                System.out.println("Title: " + movie.getTitle());
+                System.out.println("Synopsis: " + movie.getSynopsis());
+                System.out.println("Director: " + movie.getDirector());
+                System.out.println("Actors:" );
+                for (int i = 0; i < movie.getActorList().size(); i++) {
+                    System.out.println(" *" + movie.getActorList().get(i));
+                }
+                System.out.println("Showing status: " + movie.getShowingStatus());
+                System.out.println("Overall rating: " + movie.getOverallRating());
+                System.out.println();
+            }
+        }
+
+        MovieGoerMainMenu.load();
+    }
+
+    public static void viewDetails(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+
+        System.out.println();
+        System.out.println("Movie list:");
+        
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < movieList.size(); i++) {
+            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+        }
+
+        int choice = MovieGoerMainMenu.getChoice(movieList.size() + 1);
+
+        Movie movie = movieList.get(choice - 1);
+        System.out.println();
+        System.out.println("Title: " + movie.getTitle());
+        System.out.println("Synopsis: " + movie.getSynopsis());
+        System.out.println("Director: " + movie.getDirector());
+        System.out.println("Actors:" );
+        for (int i = 0; i < movie.getActorList().size(); i++) {
+            System.out.println(" *" + movie.getActorList().get(i));
+        }
+        System.out.println("Showing status: " + movie.getShowingStatus());
+        System.out.println("Overall rating: " + movie.getOverallRating());
+        System.out.println();
+
+        MovieGoerMainMenu.load();
+    }
+   
 }

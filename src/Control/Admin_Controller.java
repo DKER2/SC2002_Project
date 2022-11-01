@@ -1,6 +1,7 @@
 package src.Control;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import src.Boundary.MainMenu;
 import src.Boundary.AdminMenu.AdminMainMenu;
@@ -36,7 +37,7 @@ public class Admin_Controller {
 
         if(adminList != null){
             for(int i=0; i<adminList.size(); i++){
-                if(adminList.get(i).getUsername() == Username){
+                if(adminList.get(i).getUsername().equals(Username)){
                     exist = true;
                 }
             }
@@ -129,5 +130,29 @@ public class Admin_Controller {
 			System.out.println("Admin Existed");
             MainMenu.load();
 		}
+    }
+
+    public static void createUpdateMovie(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Create/Update/Remove Movie");
+        System.out.println("Choose from one of the following options: \n" +
+                "1. Create \n" + 
+                "2. Update \n" +
+                "3. Remove \n"+
+                "4. Go back\n");
+        
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                Movie_Controller.createMovie();
+                break;
+            case 2:
+                Movie_Controller.updateMovie();
+                break;
+            case 3:
+                Movie_Controller.removeMovie();
+                break;
+        }
     }
 }

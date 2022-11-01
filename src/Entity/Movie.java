@@ -174,4 +174,15 @@ public class Movie implements Serializable{
     public ArrayList<Review> getReview_list() {
         return this.review_list;
     }
+
+    public float getOverallRating(){
+        ArrayList<Review> reviewList = getReview_list();
+        float averageScore = (float) 0.0;
+
+        for(int i=0; i<reviewList.size(); i++){
+            averageScore += reviewList.get(i).getRate();
+        }
+
+        return averageScore/reviewList.size();
+    }
 }
