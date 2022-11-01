@@ -103,6 +103,10 @@ public class Movie_Controller {
                 newData = AdminMainMenu.getShowingStatusFromTerminal();
                 movieList.get(changIndexMovie).setShowingStatus((CONSTANTS.ShowingStatus) newData);
                 break;
+            case 6:
+                newData = AdminMainMenu.getTypeOfMovieFromTerminal();
+                movieList.get(changIndexMovie).setTypeOfMovie((CONSTANTS.TypeOfMovie) newData);
+                break; 
             default:
                 System.out.println("Invalid Choice");
                 break;

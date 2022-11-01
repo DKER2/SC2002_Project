@@ -128,6 +128,7 @@ public class Movie implements Serializable{
         this.showingStatus = showingStatus;
     }
 
+
     /**
      * This method returns the director of the movie
      * @return the director of the movie
@@ -217,14 +218,6 @@ public class Movie implements Serializable{
         this.censorship = censorship;
     }
 
-    public CONSTANTS.TypeOfMovie getTypeOfMovie() {
-        return this.typeOfMovie;
-    }
-
-    public void setTypeOfMovie(CONSTANTS.TypeOfMovie typeOfMovie) {
-        this.typeOfMovie = typeOfMovie;
-    }
-
     public int getRevenue() {
         return this.revenue;
     }
@@ -234,6 +227,14 @@ public class Movie implements Serializable{
     }
     public void setReview_list(ArrayList<Review> review_list) {
         this.review_list = review_list;
+    }
+
+    public CONSTANTS.TypeOfMovie getTypeOfMovie() {
+        return this.typeOfMovie;
+    }
+
+    public void setTypeOfMovie(CONSTANTS.TypeOfMovie typeOfMovie) {
+        this.typeOfMovie = typeOfMovie;
     }
 
 }
