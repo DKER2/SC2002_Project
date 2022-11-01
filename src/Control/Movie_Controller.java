@@ -25,8 +25,8 @@ public class Movie_Controller {
         return MovieList;
     }
 
-    public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus, String sysnopsis, String director, ArrayList<String> actorList){
-        Movie Movie = new Movie(title, showingStatus, sysnopsis, director, actorList);
+    public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus,CONSTANTS.TypeOfMovie typeOfMovie, String sysnopsis, String director, ArrayList<String> actorList){
+        Movie Movie = new Movie(title, showingStatus,typeOfMovie, sysnopsis, director, actorList);
 
         ArrayList<Movie> MovieList = new ArrayList<Movie>();
 
@@ -62,7 +62,8 @@ public class Movie_Controller {
         String director = AdminMainMenu.getDirectorFromTerminal();
         ArrayList<String> actorList = AdminMainMenu.getActorListFromTerminal();
         CONSTANTS.ShowingStatus showingStatus = AdminMainMenu.getShowingStatusFromTerminal();
-        Movie_Controller.addMovie(title, showingStatus, sysnopsis, director, actorList);
+        CONSTANTS.TypeOfMovie typeOfMovie = AdminMainMenu.getTypeOfMovieFromTerminal();
+        Movie_Controller.addMovie(title, showingStatus, typeOfMovie, sysnopsis, director, actorList);
     }
     
     public static void updateMovie() {
@@ -99,6 +100,10 @@ public class Movie_Controller {
                 newData = AdminMainMenu.getShowingStatusFromTerminal();
                 movieList.get(changIndexMovie).setShowingStatus((CONSTANTS.ShowingStatus) newData);
                 break;
+            case 6:
+                newData = AdminMainMenu.getTypeOfMovieFromTerminal();
+                movieList.get(changIndexMovie).setTypeOfMovie((CONSTANTS.TypeOfMovie) newData);
+                break; 
             default:
                 System.out.println("Invalid Choice");
                 break;

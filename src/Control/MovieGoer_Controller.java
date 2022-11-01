@@ -142,6 +142,7 @@ public class MovieGoer_Controller {
                 Movie movie = searchResults.get(choice-1);
                 System.out.println();
                 System.out.println("Title: " + movie.getTitle());
+                System.out.println("Type of movie: " + movie.getTypeOfMovie());
                 System.out.println("Synopsis: " + movie.getSynopsis());
                 System.out.println("Director: " + movie.getDirector());
                 System.out.println("Actors:" );
@@ -173,6 +174,7 @@ public class MovieGoer_Controller {
         Movie movie = movieList.get(choice - 1);
         System.out.println();
         System.out.println("Title: " + movie.getTitle());
+        System.out.println("Type of movie: " + movie.getTypeOfMovie());
         System.out.println("Synopsis: " + movie.getSynopsis());
         System.out.println("Director: " + movie.getDirector());
         System.out.println("Actors:" );

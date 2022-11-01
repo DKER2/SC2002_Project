@@ -19,6 +19,12 @@ public class Movie implements Serializable{
     private CONSTANTS.ShowingStatus showingStatus;
 
     /**
+	* The type of the movie
+	*/
+    
+    private CONSTANTS.TypeOfMovie typeOfMovie;
+
+    /**
 	* The abstract SYNOPSIS of the movie
 	*/
     private String synopsis;
@@ -43,21 +49,23 @@ public class Movie implements Serializable{
      * 
      * @param title         title of the movie
      * @param showingStatus   Showing status of the movie
+     * @param typeOfMovie   type of the movie
      * @param synopsis abstract of the movie
      * @param director  director who worked on the movie
      * @param actorList     list of actors in the movie
      * @param reviewList    list of reviews and ratings that the movie have
      */
-    public Movie(String title, CONSTANTS.ShowingStatus showingStatus, 
+    public Movie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.TypeOfMovie typeOfMovie, 
     String sysnopsis, String director, ArrayList<String> actorList){
         this.title = title;;
         this.showingStatus = showingStatus;
+        this.typeOfMovie = typeOfMovie;
         this.synopsis = sysnopsis;
         this.director = director;
         this.actorList = actorList;
         this.review_list = new ArrayList<Review>();
     }
-
+    private static final long serialVersionUID = 7674496810083135101L;
     /**
      * This method returns the title of the movie
      * @return the title of the movie
@@ -104,6 +112,22 @@ public class Movie implements Serializable{
      */
     public void setShowingStatus(CONSTANTS.ShowingStatus showingStatus) {
         this.showingStatus = showingStatus;
+    }
+
+     /**
+     * This method returns the type of the movie
+     * @return the showing type of the movie
+     */
+    public CONSTANTS.TypeOfMovie getTypeOfMovie() {
+        return this.typeOfMovie;
+    }
+    
+    /**
+     * This method sets a new type for the movie
+     * @param typeOfMovie is the new type for the movie
+     */
+    public void setTypeOfMovie(CONSTANTS.TypeOfMovie typeOfMovie) {
+        this.typeOfMovie = typeOfMovie;
     }
 
     /**
