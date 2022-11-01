@@ -29,7 +29,7 @@ public class AdminMainMenu {
                 //editCinema();
                 break;
             case 3:
-                //configSetting();
+                Admin_Controller.configSetting();
                 break;
             case 4:
                 MainMenu.load();
@@ -150,4 +150,21 @@ public class AdminMainMenu {
 
         return showingStatus;
     } 
+
+    public static int getChoice(int max){
+        System.out.println("Type your choice: ");
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        if(choice<=0 || choice>max){
+            System.out.println("Invalid choice, please try again ");
+            return getChoice(max);
+        }
+        return choice;
+    }
+
+    public static String getString(){
+        Scanner sc = new Scanner(System.in);
+        String searchString = sc.nextLine();
+        return searchString;
+    }
 }

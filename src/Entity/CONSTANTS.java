@@ -10,4 +10,12 @@ public class CONSTANTS {
         NOWSHOWING,
         ENDOFSHOWING,
     }
+
+    /**
+     * Enum for Class of Cinema for differential pricing.
+     *
+     */
+    public static enum ClassOfCinema { GOLD, MAX, NORMAL }
+
+    public static enum seatStatus { NOTEXIST, TAKEN, NOTTAKEN }
 }

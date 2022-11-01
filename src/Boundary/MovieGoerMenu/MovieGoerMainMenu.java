@@ -34,7 +34,7 @@ public class MovieGoerMainMenu {
                 MovieGoer_Controller.viewDetails();
                 break;
             case 4:
-                //MovieGoer_Controller.booking();
+                MovieGoer_Controller.booking();
                 break;
             case 5:
                 MainMenu.load();

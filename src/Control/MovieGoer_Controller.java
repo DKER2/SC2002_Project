@@ -8,6 +8,8 @@ import src.Boundary.MainMenu;
 import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
 import src.Entity.Booking;
 import src.Entity.CONSTANTS;
+import src.Entity.Cinema;
+import src.Entity.Cineplex;
 import src.Entity.Movie;
 import src.Entity.MovieGoer;
 import src.Entity.Review;
@@ -137,7 +139,7 @@ public class MovieGoer_Controller {
                 MovieGoerMainMenu.load();
             }
             else{
-                Movie movie = searchResults.get(choice);
+                Movie movie = searchResults.get(choice-1);
                 System.out.println();
                 System.out.println("Title: " + movie.getTitle());
                 System.out.println("Synopsis: " + movie.getSynopsis());
@@ -154,7 +156,7 @@ public class MovieGoer_Controller {
 
         MovieGoerMainMenu.load();
     }
-
+   
     public static void viewDetails(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -183,5 +185,32 @@ public class MovieGoer_Controller {
 
         MovieGoerMainMenu.load();
     }
-   
+
+    public static void booking(){
+        ArrayList<Cineplex> cineplexList = Cineplex_Controller.getAllCineplexs();
+
+        System.out.println();
+        System.out.println("Cineplex list:");
+        
+        for (int i = 0; i < cineplexList.size(); i++) {
+            System.out.println((i + 1 ) + ". " + cineplexList.get(i).getCineplexName());
+        }
+
+        int choice = MovieGoerMainMenu.getChoice(cineplexList.size() + 1);
+
+        Cineplex cineplex = cineplexList.get(choice - 1);
+
+        ArrayList<Cinema> cinemaList = cineplex.getCinema();
+
+        System.out.println();
+        System.out.println("Cineplex list:");
+        
+        for (int i = 0; i < cinemaList.size(); i++) {
+            System.out.println((i + 1 ) + ". " + cinemaList.get(i).getCinemaName());
+        }
+
+        choice = MovieGoerMainMenu.getChoice(cinemaList.size() + 1);
+
+        Cinema cinema = cinemaList.get(choice - 1);
+    }
 }

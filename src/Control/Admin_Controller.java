@@ -1,11 +1,16 @@
 package src.Control;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.sound.midi.SysexMessage;
 
 import src.Boundary.MainMenu;
 import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Entity.Admin;
+import src.Entity.Holiday;
 import src.utils.SerializeDB;
 
 public class Admin_Controller {
@@ -134,7 +139,7 @@ public class Admin_Controller {
 
     public static void createUpdateMovie(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Create/Update/Remove Movie");
+        System.out.println("-----------Create/Update/Remove Movie-----------");
         System.out.println("Choose from one of the following options: \n" +
                 "1. Create \n" + 
                 "2. Update \n" +
@@ -155,4 +160,28 @@ public class Admin_Controller {
                 break;
         }
     }
+
+    public static void configSetting(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------Configure System---------");
+        System.out.println("Choose from one of the following options: \n" +
+                "1. Update Ticket Price \n" + 
+                "2. Holidays \n" +
+                "3. Back \n");
+        
+        int choice = AdminMainMenu.getChoice(3);
+
+        switch(choice){
+            case 1:
+                break;
+            case 2:
+                Holiday_Controller.configureHolidays();
+                break;
+            case 3:
+                AdminMainMenu.load();
+                break;
+        }
+    }
+
+    
 }

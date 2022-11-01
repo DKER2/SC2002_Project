@@ -1,13 +1,8 @@
 package src.Entity;
 import java.io.Serializable;
-public class Seat implements Serializable{
+import src.Entity.CONSTANTS;
 
-    /**
-     * Enum for Seat Status
-     * @author SS3 Group 8
-     *
-     */
-    public enum enumSeat { NOTEXIST, TAKEN, NOTTAKEN }
+public class Seat implements Serializable{
 
     /**
      * Seat ID
@@ -17,14 +12,14 @@ public class Seat implements Serializable{
     /**
      * Information on Seat Status (Enum)
      */
-    private enumSeat seatStatus;
+    private CONSTANTS.seatStatus seatStatus;
 
     /**
      * Constructor for Seat Object
      * @param status Seat Status (Enum)
      * @param seatID String value of Seat ID
      */
-    public Seat(enumSeat status, String seatID) {
+    public Seat(CONSTANTS.seatStatus status, String seatID) {
         this.seatStatus = status;
         this.seatID = seatID;
     }
@@ -33,10 +28,10 @@ public class Seat implements Serializable{
      * Used for printing seat layout
      */
     public String toString() {
-        if(seatStatus == enumSeat.NOTEXIST){
+        if(seatStatus == CONSTANTS.seatStatus.NOTEXIST){
             return "   ";
         }
-        else if (seatStatus == enumSeat.TAKEN){
+        else if (seatStatus == CONSTANTS.seatStatus.TAKEN){
             return "[X]";
         }
         else {
@@ -48,7 +43,7 @@ public class Seat implements Serializable{
      * Gets Seat Status
      * @return Seat Status (Enum)
      */
-    public enumSeat getStatus() {
+    public CONSTANTS.seatStatus getStatus() {
         return seatStatus;
     }
 
@@ -56,7 +51,7 @@ public class Seat implements Serializable{
      * Sets Seat Status
      * @param status New Seat Status (Enum)
      */
-    public void setStatus(enumSeat status) {
+    public void setStatus(CONSTANTS.seatStatus status) {
         seatStatus = status;
     }
 

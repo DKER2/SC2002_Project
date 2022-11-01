@@ -1,13 +1,11 @@
 package src.Entity;
 import java.io.Serializable;
 
+import src.Entity.CONSTANTS.ClassOfCinema;
+
 public class Cinema implements Serializable{
 
-    /**
-     * Enum for Class of Cinema for differential pricing.
-     *
-     */
-    public enum ClassOfCinema { GOLD, MAX, NORMAL }
+	private String cinemaName;
 	/**
 	 * Contains Class of Cinema for differential pricing.
 	 */
@@ -20,10 +18,6 @@ public class Cinema implements Serializable{
 	 * 2D Array containing Seat Layout
 	 */
 	private Seat[][] seats;
-	/**
-	 * Cinema Index
-	 */
-	private int cinemaIndex;
 	/**
 	 * Number of Empty Seats
 	 */
@@ -43,11 +37,10 @@ public class Cinema implements Serializable{
 	 * @param cinemaCode Used for Transaction ID
 	 * @param row Number of rows in Seat Layout
 	 * @param column Number of columns in Seat Layout
-	 * @param seats Seat Layout
-	 * @param cinemaID Cinema ID
 	 * @param numOfEmptySeat Number of Empty Seats
 	 */
-	public Cinema(ClassOfCinema cinemaClass, String cinemaCode, int row, int column, Seat[] seats, int cinemaID, int numOfEmptySeat){
+	public Cinema(ClassOfCinema cinemaClass, String cinemaName, String cinemaCode, int row, int column, Seat[] seats, int numOfEmptySeat){
+		this.cinemaName = cinemaName;
 		this.classOfCinema = cinemaClass;
         this.cinemaCode = cinemaCode;
 		this.row = row;
@@ -59,7 +52,6 @@ public class Cinema implements Serializable{
                 this.seats[i][j].setID('A'+i, j+1);
 			}
 		}
-		this.cinemaIndex = cinemaID;
 		this.numOfEmptySeat = numOfEmptySeat;
 	}
 
@@ -79,14 +71,6 @@ public class Cinema implements Serializable{
 	 */
 	public Seat getSeat(int row, int col){
 		return seats[row][col];
-	}
-
-	/**
-	 * Gets this Cinema's index
-	 * @return Cinema Index
-	 */
-	public int getCinemaIndex(){
-		return cinemaIndex;
 	}
 
     /**
@@ -137,4 +121,7 @@ public class Cinema implements Serializable{
 		return column;
 	}
 
+	public String getCinemaName(){
+		return cinemaName;
+	}
 }
