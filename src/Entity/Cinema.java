@@ -4,11 +4,6 @@ import java.io.Serializable;
 import src.Entity.CONSTANTS.ClassOfCinema;
 
 public class Cinema implements Serializable{
-
-	private String cinemaName;
-	/**
-	 * Contains Class of Cinema for differential pricing.
-	 */
 	private ClassOfCinema classOfCinema;
     /**
      * Cinema code used for Transaction ID.
@@ -39,8 +34,7 @@ public class Cinema implements Serializable{
 	 * @param column Number of columns in Seat Layout
 	 * @param numOfEmptySeat Number of Empty Seats
 	 */
-	public Cinema(ClassOfCinema cinemaClass, String cinemaName, String cinemaCode, int row, int column, Seat[] seats, int numOfEmptySeat){
-		this.cinemaName = cinemaName;
+	public Cinema(ClassOfCinema cinemaClass, String cinemaCode, int row, int column, Seat[] seats, int numOfEmptySeat){
 		this.classOfCinema = cinemaClass;
         this.cinemaCode = cinemaCode;
 		this.row = row;
@@ -119,9 +113,5 @@ public class Cinema implements Serializable{
 	 */
 	public int getCol(){
 		return column;
-	}
-
-	public String getCinemaName(){
-		return cinemaName;
 	}
 }

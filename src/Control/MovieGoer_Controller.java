@@ -203,10 +203,10 @@ public class MovieGoer_Controller {
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
 
         System.out.println();
-        System.out.println("Cineplex list:");
+        System.out.println("Cinema list:");
         
         for (int i = 0; i < cinemaList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + cinemaList.get(i).getCinemaName());
+            System.out.println((i + 1 ) + ". " + cinemaList.get(i).getCinemaCode());
         }
 
         choice = MovieGoerMainMenu.getChoice(cinemaList.size() + 1);

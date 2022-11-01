@@ -18,4 +18,8 @@ public class CONSTANTS {
     public static enum ClassOfCinema { GOLD, MAX, NORMAL }
 
     public static enum seatStatus { NOTEXIST, TAKEN, NOTTAKEN }
+
+    public enum Censorship {G, PG, PG13, NC16, M18, R21}
+
+    public enum TypeOfMovie {DIGITAL, BLOCKBUSTER,NORMAL}
 }

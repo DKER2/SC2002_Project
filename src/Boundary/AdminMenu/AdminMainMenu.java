@@ -151,6 +151,70 @@ public class AdminMainMenu {
         return showingStatus;
     } 
 
+    public static CONSTANTS.Censorship getCensorshipFromTerminal(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("==== Please choose Censorship status ====");
+        System.out.println("1. G");
+        System.out.println("2. PG");
+        System.out.println("3. PG13");
+        System.out.println("4. NC16");
+        System.out.println("5. M18");
+        System.out.println("6. R21");
+        System.out.println("Enter your choice:");
+        CONSTANTS.Censorship censorStatus;
+        switch(sc.nextInt()){
+            case 1:
+                censorStatus = CONSTANTS.Censorship.G;
+                break;
+            case 2:
+                censorStatus = CONSTANTS.Censorship.PG;
+                break;
+            case 3:
+                censorStatus = CONSTANTS.Censorship.PG13;
+                break;
+            case 4:
+                censorStatus = CONSTANTS.Censorship.NC16;
+                break;
+            case 5:
+                censorStatus = CONSTANTS.Censorship.M18;
+                break;
+            case 6:
+                censorStatus = CONSTANTS.Censorship.R21;
+                break;
+            default:
+                censorStatus = CONSTANTS.Censorship.G;
+                break;
+        }
+
+        return censorStatus;
+    } 
+
+    public static CONSTANTS.TypeOfMovie getTypeOfMovieFromTerminal(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("==== Please choose type of movie ====");
+        System.out.println("1. DIGITAL");
+        System.out.println("2. BLOCKBUSTER");
+        System.out.println("3. NORMAL");
+        System.out.println("Enter your choice:");
+        CONSTANTS.TypeOfMovie censorStatus;
+        switch(sc.nextInt()){
+            case 1:
+                censorStatus = CONSTANTS.TypeOfMovie.DIGITAL;
+                break;
+            case 2:
+                censorStatus = CONSTANTS.TypeOfMovie.BLOCKBUSTER;
+                break;
+            case 3:
+                censorStatus = CONSTANTS.TypeOfMovie.NORMAL;
+                break;
+            default:
+                censorStatus = CONSTANTS.TypeOfMovie.DIGITAL;
+                break;
+        }
+
+        return censorStatus;
+    } 
+
     public static int getChoice(int max){
         System.out.println("Type your choice: ");
         Scanner sc = new Scanner(System.in);

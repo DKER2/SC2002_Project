@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import src.Entity.CONSTANTS;
 import src.Entity.Movie;
+import src.Entity.Review;
 import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
 import src.utils.SerializeDB;
@@ -25,8 +26,9 @@ public class Movie_Controller {
         return MovieList;
     }
 
-    public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus, String sysnopsis, String director, ArrayList<String> actorList){
-        Movie Movie = new Movie(title, showingStatus, sysnopsis, director, actorList);
+    public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.Censorship censorship, CONSTANTS.TypeOfMovie typeOfMovie, String sysnopsis, String director, ArrayList<String> actorList){
+        ArrayList<Review> review_list = new ArrayList<Review>();
+        Movie Movie = new Movie(title, showingStatus, censorship, typeOfMovie, sysnopsis, director, actorList, 0, review_list);
 
         ArrayList<Movie> MovieList = new ArrayList<Movie>();
 
@@ -62,7 +64,9 @@ public class Movie_Controller {
         String director = AdminMainMenu.getDirectorFromTerminal();
         ArrayList<String> actorList = AdminMainMenu.getActorListFromTerminal();
         CONSTANTS.ShowingStatus showingStatus = AdminMainMenu.getShowingStatusFromTerminal();
-        Movie_Controller.addMovie(title, showingStatus, sysnopsis, director, actorList);
+        CONSTANTS.Censorship censorship = AdminMainMenu.getCensorshipFromTerminal();
+        CONSTANTS.TypeOfMovie typeOfMovie = AdminMainMenu.getTypeOfMovieFromTerminal();
+        Movie_Controller.addMovie(title, showingStatus, censorship, typeOfMovie, sysnopsis, director, actorList);
     }
     
     public static void updateMovie() {

@@ -19,6 +19,16 @@ public class Movie implements Serializable{
     private CONSTANTS.ShowingStatus showingStatus;
 
     /**
+	* The censorship of the movie
+	*/
+    private CONSTANTS.Censorship censorship;
+
+    /**
+     * Type of Movie for this Movie
+     */
+    private CONSTANTS.TypeOfMovie typeOfMovie;
+
+    /**
 	* The abstract SYNOPSIS of the movie
 	*/
     private String synopsis;
@@ -34,6 +44,11 @@ public class Movie implements Serializable{
     private ArrayList<String> actorList;
 
     /**
+     * Revenue from sales for this Movie
+     */
+    private int revenue;
+
+    /**
 	* The list of review of the movie
 	*/
     private ArrayList<Review> review_list;
@@ -43,20 +58,27 @@ public class Movie implements Serializable{
      * 
      * @param title         title of the movie
      * @param showingStatus   Showing status of the movie
+     * @param censorship Showing censorship of the movie
      * @param synopsis abstract of the movie
      * @param director  director who worked on the movie
      * @param actorList     list of actors in the movie
      * @param reviewList    list of reviews and ratings that the movie have
+     * @param basePrice base price of the movie
+     * @param revenue
      */
-    public Movie(String title, CONSTANTS.ShowingStatus showingStatus, 
-    String sysnopsis, String director, ArrayList<String> actorList){
-        this.title = title;;
+
+    public Movie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.Censorship censorship, CONSTANTS.TypeOfMovie typeOfMovie, String synopsis, String director, ArrayList<String> actorList, int revenue, ArrayList<Review> review_list) {
+        this.title = title;
         this.showingStatus = showingStatus;
-        this.synopsis = sysnopsis;
+        this.censorship = censorship;
+        this.typeOfMovie = typeOfMovie;
+        this.synopsis = synopsis;
         this.director = director;
         this.actorList = actorList;
-        this.review_list = new ArrayList<Review>();
+        this.revenue = revenue;
+        this.review_list = review_list;
     }
+    
 
     /**
      * This method returns the title of the movie
@@ -185,4 +207,33 @@ public class Movie implements Serializable{
 
         return averageScore/reviewList.size();
     }
+
+
+    public CONSTANTS.Censorship getCensorship() {
+        return this.censorship;
+    }
+
+    public void setCensorship(CONSTANTS.Censorship censorship) {
+        this.censorship = censorship;
+    }
+
+    public CONSTANTS.TypeOfMovie getTypeOfMovie() {
+        return this.typeOfMovie;
+    }
+
+    public void setTypeOfMovie(CONSTANTS.TypeOfMovie typeOfMovie) {
+        this.typeOfMovie = typeOfMovie;
+    }
+
+    public int getRevenue() {
+        return this.revenue;
+    }
+
+    public void setRevenue(int revenue) {
+        this.revenue = revenue;
+    }
+    public void setReview_list(ArrayList<Review> review_list) {
+        this.review_list = review_list;
+    }
+
 }
