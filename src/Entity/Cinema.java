@@ -106,4 +106,12 @@ public class Cinema implements Serializable{
 	public void addShowTime(ShowTime showTime){
 		showTimeList.add(showTime);
 	}
+
+	public void updateShowTime(ShowTime newShowTime, int showTimeIndex){
+		showTimeList.set(showTimeIndex, newShowTime);
+	}
+
+	public void removeShowTime(int showTimeIndex){
+		showTimeList.remove(showTimeIndex);
+	}
 }

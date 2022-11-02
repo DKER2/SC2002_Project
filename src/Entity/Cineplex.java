@@ -73,4 +73,35 @@ public class Cineplex implements Serializable{
 			}
 		}
 	}
+
+	/**
+	 * Update show time of a cinema in a cineplex
+	 * @param cinemaCode cinemaCode to add showtime
+	 * @param showTime show time to add
+	 * @param showTimeIndex
+	 */
+	public void updateShowTime(String cinemaCode, ShowTime newShowTime, int showTimeIndex){
+		for(int i=0; i<cinemas.size(); i++){
+			if(cinemas.get(i).getCinemaCode().equals(cinemaCode)){
+				Cinema newData = cinemas.get(i);
+				newData.updateShowTime(newShowTime, showTimeIndex);
+				cinemas.set(i, newData);
+			}
+		}
+	}
+
+	/**
+	 * Remove show time of a cinema in a cineplex
+	 * @param cinemaCode cinemaCode to remove showtime
+	 * @param showTimeIndex
+	 */
+	public void removeShowTime(String cinemaCode, int showTimeIndex){
+		for(int i=0; i<cinemas.size(); i++){
+			if(cinemas.get(i).getCinemaCode().equals(cinemaCode)){
+				Cinema newData = cinemas.get(i);
+				newData.removeShowTime(showTimeIndex);
+				cinemas.set(i, newData);
+			}
+		}
+	}
 }

@@ -96,4 +96,7 @@ public class ShowTime implements Serializable{
         return this.seats;
     }
 
+    public void setMovie(Movie newMovie) {
+        movie = newMovie;
+    }
 }

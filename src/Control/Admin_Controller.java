@@ -162,7 +162,7 @@ public class Admin_Controller {
     }
 
     public static void createUpdateShowTime(){
-        Cineplex_Controller.displayShowTime();
+        Cineplex_Controller.displayShowTimeOfAllCineplex();
 
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Create/Update/Remove Show Time-----------");
@@ -180,10 +180,10 @@ public class Admin_Controller {
                 createUpdateShowTime();
                 break;
             case 2:
-                //Cineplex_Controller.updateMovie();
+                Cineplex_Controller.updateShowTime();
                 break;
             case 3:
-                //Cineplex_Controller.removeMovie();
+                Cineplex_Controller.removeShowTime();
                 break;
             case 4:
                 AdminMainMenu.load();
