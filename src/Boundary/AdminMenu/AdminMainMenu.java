@@ -26,7 +26,7 @@ public class AdminMainMenu {
                 Admin_Controller.createUpdateMovie();
                 break;
             case 2:
-                //editCinema();
+                Admin_Controller.createUpdateShowTime();
                 break;
             case 3:
                 Admin_Controller.configSetting();

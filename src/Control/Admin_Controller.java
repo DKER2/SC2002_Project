@@ -161,6 +161,32 @@ public class Admin_Controller {
         }
     }
 
+    public static void createUpdateShowTime(){
+        Cineplex_Controller.displayShowTime();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------Create/Update/Remove Show Time-----------");
+        System.out.println("Choose from one of the following options: \n" +
+                "1. Create \n" + 
+                "2. Update \n" +
+                "3. Remove \n"+
+                "4. Go back\n");
+        
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                Cineplex_Controller.createShowTime();
+                break;
+            case 2:
+                //Cineplex_Controller.updateMovie();
+                break;
+            case 3:
+                //Cineplex_Controller.removeMovie();
+                break;
+        }
+    }
+
     public static void configSetting(){
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Configure System---------");
@@ -173,6 +199,7 @@ public class Admin_Controller {
 
         switch(choice){
             case 1:
+                //ticket price update
                 break;
             case 2:
                 Holiday_Controller.configureHolidays();

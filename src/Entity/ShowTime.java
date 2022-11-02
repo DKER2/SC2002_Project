@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
-public class MovieShowing implements Serializable{
+public class ShowTime implements Serializable{
     /**
      * Movie object with information on Movie
      */
@@ -22,17 +22,22 @@ public class MovieShowing implements Serializable{
      */
     private Date showTime; //show time of the movie
     /**
+     * Available seats;
+     */
+    private Seat[][] seats;
+    /**
      * Constructor for MovieShowing object
      * @param movie Movie Object
      * @param cinema Cinema where Movie is screened
      * @param cineplex Cineplex where cinema resides in
      * @param date Date object containing information on showtime
      */
-    public MovieShowing(Movie movie, Cinema cinema, Cineplex cineplex, Date date) { //constructor
+    public ShowTime(Movie movie, Cinema cinema, Cineplex cineplex, Date date) { //constructor
         this.movie = movie;
         this.cinema = cinema;
         this.cineplex = cineplex;
         this.showTime = date;
+        this.seats = cinema.getSeatLayout();
     }
     /**
      * Generate String with information on Movie Showtime
@@ -86,4 +91,9 @@ public class MovieShowing implements Serializable{
     public String toString() {
     	return "Cinema Code: " + cinema.getCinemaCode();
     }
+
+    public Seat[][] getSeats() {
+        return this.seats;
+    }
+
 }

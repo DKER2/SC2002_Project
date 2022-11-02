@@ -49,4 +49,13 @@ public class Cineplex implements Serializable{
 	{
 		cineplexName = name;
 	}
+
+	/**
+	 * Sets cineplex name
+	 * @param name New cineplex name
+	 */
+	public void setCinemaList(ArrayList<Cinema> newCinemas) 
+	{
+		cinemas = newCinemas;
+	}
 }

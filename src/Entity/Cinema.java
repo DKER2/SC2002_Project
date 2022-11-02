@@ -1,5 +1,6 @@
 package src.Entity;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import src.Entity.CONSTANTS.ClassOfCinema;
 
@@ -14,10 +15,6 @@ public class Cinema implements Serializable{
 	 */
 	private Seat[][] seats;
 	/**
-	 * Number of Empty Seats
-	 */
-	private int numOfEmptySeat;
-	/**
 	 * Number of rows for Seat Layout
 	 */
 	private int row;
@@ -26,15 +23,18 @@ public class Cinema implements Serializable{
 	 */
 	private int column;
 	/**
+	 * Show Time List
+	 */
+	ArrayList<ShowTime> showTimeList;
+	/**
 	 * Constructor for Cinema Object
 	 * 
 	 * @param cinemaClass Class of Cinema (i.e. GOLD)
 	 * @param cinemaCode Used for Transaction ID
 	 * @param row Number of rows in Seat Layout
 	 * @param column Number of columns in Seat Layout
-	 * @param numOfEmptySeat Number of Empty Seats
 	 */
-	public Cinema(ClassOfCinema cinemaClass, String cinemaCode, int row, int column, Seat[] seats, int numOfEmptySeat){
+	public Cinema(ClassOfCinema cinemaClass, String cinemaCode, int row, int column, Seat[] seats){
 		this.classOfCinema = cinemaClass;
         this.cinemaCode = cinemaCode;
 		this.row = row;
@@ -46,7 +46,7 @@ public class Cinema implements Serializable{
                 this.seats[i][j].setID('A'+i, j+1);
 			}
 		}
-		this.numOfEmptySeat = numOfEmptySeat;
+		this.showTimeList = new ArrayList<ShowTime>();
 	}
 
 	/**
@@ -76,22 +76,6 @@ public class Cinema implements Serializable{
     }
 
 	/**
-	 * Gets number of empty seats
-	 * @return Number of Empty Seats
-	 */
-	public int getnumOfEmptySeat(){
-		return numOfEmptySeat;
-	}
-	
-	/**
-	 * Sets Number of Empty Seats (Accepts Integer)
-	 * @param numOfEmptySeat Integer
-	 */
-	public void setNumOfEmptySeat(int numOfEmptySeat){
-		this.numOfEmptySeat = numOfEmptySeat;
-	}
-
-	/**
 	 * Returns 2D Array of Seat Layout
 	 * @return Seat Layout
 	 */
@@ -113,5 +97,13 @@ public class Cinema implements Serializable{
 	 */
 	public int getCol(){
 		return column;
+	}
+
+	public ArrayList<ShowTime> getShowTimeList(){
+		return showTimeList;
+	}
+
+	public void addShowTime(ShowTime showTime){
+		showTimeList.add(showTime);
 	}
 }
