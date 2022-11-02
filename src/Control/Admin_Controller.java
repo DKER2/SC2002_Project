@@ -177,12 +177,16 @@ public class Admin_Controller {
         switch(choice){
             case 1:
                 Cineplex_Controller.createShowTime();
+                createUpdateShowTime();
                 break;
             case 2:
                 //Cineplex_Controller.updateMovie();
                 break;
             case 3:
                 //Cineplex_Controller.removeMovie();
+                break;
+            case 4:
+                AdminMainMenu.load();
                 break;
         }
     }

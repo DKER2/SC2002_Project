@@ -58,4 +58,19 @@ public class Cineplex implements Serializable{
 	{
 		cinemas = newCinemas;
 	}
+
+	/**
+	 * Add show time to a cinema in a cineplex
+	 * @param cinemaCode cinemaCode to add showtime
+	 * @param showTime show time to add 
+	 */
+	public void addShowTime(String cinemaCode, ShowTime showTime){
+		for(int i=0; i<cinemas.size(); i++){
+			if(cinemas.get(i).getCinemaCode().equals(cinemaCode)){
+				Cinema newData = cinemas.get(i);
+				newData.addShowTime(showTime);
+				cinemas.set(i, newData);
+			}
+		}
+	}
 }
