@@ -63,7 +63,6 @@ public class Movie implements Serializable{
      * @param director  director who worked on the movie
      * @param actorList     list of actors in the movie
      * @param reviewList    list of reviews and ratings that the movie have
-     * @param basePrice base price of the movie
      * @param revenue
      */
 
@@ -209,6 +208,9 @@ public class Movie implements Serializable{
         return averageScore/reviewList.size();
     }
 
+    public void increaseRevenue(int increaseAmount){
+        revenue = revenue + increaseAmount;
+    }
 
     public CONSTANTS.Censorship getCensorship() {
         return this.censorship;
@@ -218,13 +220,6 @@ public class Movie implements Serializable{
         this.censorship = censorship;
     }
 
-    public int getRevenue() {
-        return this.revenue;
-    }
-
-    public void setRevenue(int revenue) {
-        this.revenue = revenue;
-    }
     public void setReview_list(ArrayList<Review> review_list) {
         this.review_list = review_list;
     }

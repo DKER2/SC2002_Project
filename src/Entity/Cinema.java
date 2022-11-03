@@ -114,4 +114,11 @@ public class Cinema implements Serializable{
 	public void removeShowTime(int showTimeIndex){
 		showTimeList.remove(showTimeIndex);
 	}
+
+	public boolean bookSeat(int showTimeIndex, int colIndex, int rowIndex, String username){
+		ShowTime newShowTime = showTimeList.get(showTimeIndex);
+		boolean flag = newShowTime.bookSeat(colIndex, rowIndex, username);
+		showTimeList.set(showTimeIndex, newShowTime);
+		return flag;
+	}
 }

@@ -1,5 +1,7 @@
 package src.Entity;
 import java.io.Serializable;
+import java.util.concurrent.CyclicBarrier;
+
 import src.Entity.CONSTANTS;
 
 public class Seat implements Serializable{
@@ -8,6 +10,11 @@ public class Seat implements Serializable{
      * Seat ID
      */
     private String seatID;
+    
+    /**
+     * owner
+     */
+    private String owner;
 
     /**
      * Information on Seat Status (Enum)
@@ -47,12 +54,18 @@ public class Seat implements Serializable{
         return seatStatus;
     }
 
-    /**
-     * Sets Seat Status
-     * @param status New Seat Status (Enum)
-     */
-    public void setStatus(CONSTANTS.seatStatus status) {
-        seatStatus = status;
+    public boolean bookSeat(String owner){
+        if(seatStatus.equals(CONSTANTS.seatStatus.TAKEN)){
+            System.out.println("The seat have been occupied, sorry");
+            return false;
+        }
+        this.seatStatus = CONSTANTS.seatStatus.TAKEN;
+        this.owner = owner;
+        return true;
+    }
+
+    public void freeSeat(){
+        seatStatus = CONSTANTS.seatStatus.NOTTAKEN;
     }
 
     /**
@@ -72,5 +85,15 @@ public class Seat implements Serializable{
      */
     public String getSeatID() {
         return seatID;
+    }
+
+    public String getOwner() {
+        if(seatStatus.equals(CONSTANTS.seatStatus.TAKEN)){
+            return owner;
+        }
+        else{
+            System.out.println("The seat have not been occupied");
+            return " ";
+        }
     }
 }

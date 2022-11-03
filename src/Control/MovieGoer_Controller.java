@@ -1,7 +1,6 @@
 package src.Control;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import src.Boundary.MainMenu;
@@ -12,13 +11,14 @@ import src.Entity.Cinema;
 import src.Entity.Cineplex;
 import src.Entity.Movie;
 import src.Entity.MovieGoer;
-import src.Entity.Review;
+import src.Entity.ShowTime;
 import src.utils.SerializeDB;
 
 public class MovieGoer_Controller {
     public final static String FILENAME = "././data/movieGoer.txt";
     final static int CHANGE_USERNAME = 1;
     final static int CHANGE_PASSWORD = 2;
+    private static String username;
 
     public MovieGoer_Controller(){
 
@@ -75,6 +75,7 @@ public class MovieGoer_Controller {
         
         if(exist){
 			System.out.println("Login Successfuly");
+            MovieGoer_Controller.username = Username;
 			MovieGoerMainMenu.load();
 		}
 		else{
@@ -191,28 +192,78 @@ public class MovieGoer_Controller {
     public static void booking(){
         ArrayList<Cineplex> cineplexList = Cineplex_Controller.getAllCineplexs();
 
-        System.out.println();
-        System.out.println("Cineplex list:");
-        
-        for (int i = 0; i < cineplexList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + cineplexList.get(i).getCineplexName());
-        }
+        Cineplex_Controller.displayShowTimeOfAllCineplex();
 
-        int choice = MovieGoerMainMenu.getChoice(cineplexList.size() + 1);
+        int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size() + 1)-1;
 
-        Cineplex cineplex = cineplexList.get(choice - 1);
+        Cineplex cineplex = cineplexList.get(cineplexIndex);
 
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
+        Cineplex_Controller.displayShowTimeOfCineplex(cineplex);
 
-        System.out.println();
-        System.out.println("Cinema list:");
-        
-        for (int i = 0; i < cinemaList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + cinemaList.get(i).getCinemaCode());
+        int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size() + 1) - 1;
+
+        Cinema cinema = cinemaList.get(cinemaIndex);
+
+        ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
+        Cineplex_Controller.displayShowTimeOfCinema(cinema);
+
+        int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size() + 1) - 1;
+
+        ShowTime showTime = showTimeList.get(showTimeIndex);
+
+        showTime.displaySeat();
+
+        System.out.println("Type in the column of seat you want:");
+        int colIndex = MovieGoerMainMenu.getChoice(showTime.getWidthOfSeat()) - 1;
+
+        System.out.println("Type in the row of seat you want:");
+        int rowIndex = MovieGoerMainMenu.getChoice(showTime.getHeightOfSeat()) - 1;
+
+        if(cineplex.bookSeat(cinema.getCinemaCode(), showTimeIndex, colIndex, rowIndex, MovieGoer_Controller.username)){
+            ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
+
+            movieGoerList = getAllMovieGoers();
+
+            for(int i=0; i<movieGoerList.size(); i++){
+                if(movieGoerList.get(i).getUsername().equals(MovieGoer_Controller.username)){
+                    Booking newBooking =  new Booking(colIndex+1, rowIndex+1, (float) 12.5, showTime.getMovie(), cinema, cineplex);
+                    movieGoerList.get(i).booking(newBooking);
+                    Movie_Controller.increaseRevenue(newBooking.getMovie());
+                }
+            }
+
+            SerializeDB.writeSerializedObject(FILENAME, movieGoerList);
+            
+            cineplexList.set(cineplexIndex, cineplex);
+            Cineplex_Controller.save(cineplexList);
+
+            System.out.println("Booking Succesfully");
+            MovieGoerMainMenu.load();
         }
+    }
 
-        choice = MovieGoerMainMenu.getChoice(cinemaList.size() + 1);
+    public static void viewHistoryBook(){
+        ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
 
-        Cinema cinema = cinemaList.get(choice - 1);
+        movieGoerList = getAllMovieGoers();
+
+        for(int i=0; i<movieGoerList.size(); i++){
+            if(movieGoerList.get(i).getUsername().equals(MovieGoer_Controller.username)){
+                MovieGoer movieGoer = movieGoerList.get(i);
+                ArrayList<Booking> bookingList = movieGoer.getBookingList();
+                for(int j=0; j<bookingList.size(); j++){
+                    System.out.println("Title: " + bookingList.get(j).getMovie().getTitle() + "|" +
+                    "Seat: " + bookingList.get(j).getSeatColumn() + " " + bookingList.get(j).getSeatRow() + "|" +
+                    "Cinema: " + bookingList.get(j).getCinema().getCinemaCode() + "|" +
+                    "Cineplex: " + bookingList.get(j).getCineplex().getCineplexName());
+                }
+            }
+        }
+        MovieGoerMainMenu.load();
+    }
+
+    public static void listTopFiveMovie(){
+        Movie_Controller.listTopFiveMovie();
     }
 }

@@ -38,7 +38,7 @@ public class Movie_Controller {
 
         if(MovieList != null){
             for(int i=0; i<MovieList.size(); i++){
-                if(MovieList.get(i).getTitle() == title){
+                if(MovieList.get(i).getTitle().equals(title)){
                     exist = true;
                 }
             }
@@ -136,5 +136,31 @@ public class Movie_Controller {
         System.out.println("The movie has been removed!\n");
 
         AdminMainMenu.load();
+    }
+
+    public static void increaseRevenue(Movie movie){
+        ArrayList<Movie> MovieList = new ArrayList<Movie>();
+
+        MovieList = getAllMovies();
+
+        boolean exist = false;
+
+        if(MovieList != null){
+            for(int i=0; i<MovieList.size(); i++){
+                if(MovieList.get(i).getTitle().equals(movie.getTitle())){
+                    Movie newData = MovieList.get(i);
+                    newData.increaseRevenue(1);
+                    MovieList.set(i, newData);
+                }
+            }
+        } else{
+            MovieList = new ArrayList<Movie>();
+        }
+
+        SerializeDB.writeSerializedObject(FILENAME, MovieList);
+    }
+
+    public static void listTopFiveMovie(){
+
     }
 }

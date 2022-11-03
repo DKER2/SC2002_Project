@@ -104,4 +104,21 @@ public class Cineplex implements Serializable{
 			}
 		}
 	}
+
+	/**
+	 * Remove show time of a cinema in a cineplex
+	 * @param cinemaCode cinemaCode to remove showtime
+	 * @param showTimeIndex
+	 */
+	public boolean bookSeat(String cinemaCode, int showTimeIndex, int colIndex, int rowIndex, String username){
+		for(int i=0; i<cinemas.size(); i++){
+			if(cinemas.get(i).getCinemaCode().equals(cinemaCode)){
+				Cinema newData = cinemas.get(i);
+				boolean flag = newData.bookSeat(showTimeIndex, colIndex, rowIndex, username);
+				cinemas.set(i, newData);
+				return flag;
+			}
+		}
+		return false;
+	}
 }

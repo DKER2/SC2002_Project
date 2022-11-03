@@ -37,7 +37,12 @@ public class ShowTime implements Serializable{
         this.cinema = cinema;
         this.cineplex = cineplex;
         this.showTime = date;
-        this.seats = cinema.getSeatLayout();
+        this.seats = new Seat[cinema.getSeatLayout().length][cinema.getSeatLayout()[0].length];
+        for(int i=0; i<seats.length; i++){
+            for(int j=0; j<seats[0].length; j++){
+                seats[i][j] = new Seat(CONSTANTS.seatStatus.NOTTAKEN, "");
+            }
+        }
     }
     /**
      * Generate String with information on Movie Showtime
@@ -92,11 +97,34 @@ public class ShowTime implements Serializable{
     	return "Cinema Code: " + cinema.getCinemaCode();
     }
 
-    public Seat[][] getSeats() {
-        return this.seats;
-    }
-
     public void setMovie(Movie newMovie) {
         movie = newMovie;
+    }
+
+    public void displaySeat(){
+        for(int j=0; j<seats[0].length; j++){
+            System.out.print(" "+  (j+1) + " ");
+        }
+        System.out.print("\n");
+
+        for(int i=0; i<seats.length; i++){
+            System.out.print((i+1) + " ");
+            for(int j=0; j<seats[0].length; j++){
+                System.out.print(seats[i][j].toString());
+            }
+            System.out.print("\n");
+        }
+    }
+
+    public boolean bookSeat(int col, int row, String username){
+        return seats[row][col].bookSeat(username);
+    }
+
+    public int getHeightOfSeat(){
+        return seats.length;
+    }
+
+    public int getWidthOfSeat(){
+        return seats[0].length;
     }
 }

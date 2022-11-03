@@ -59,5 +59,8 @@ public class MovieGoer extends User{
         this.bookingList = bookingList;
     }
 
-
+    
+    public void booking(Booking newBooking){
+        bookingList.add(newBooking);
+    }
 }

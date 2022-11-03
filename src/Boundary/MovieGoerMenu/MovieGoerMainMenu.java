@@ -1,12 +1,8 @@
 package src.Boundary.MovieGoerMenu;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import src.Boundary.MainMenu;
 import src.Control.MovieGoer_Controller;
-import src.Control.Movie_Controller;
-import src.Entity.Movie;
 
 public class MovieGoerMainMenu {
     public static void load() {
@@ -37,7 +33,10 @@ public class MovieGoerMainMenu {
                 MovieGoer_Controller.booking();
                 break;
             case 5:
-                MainMenu.load();
+                MovieGoer_Controller.viewHistoryBook();
+                break;
+            case 6:
+                MovieGoer_Controller.listTopFiveMovie();
                 break;
             default:
                 System.out.println("Invalid choice, please try again");
