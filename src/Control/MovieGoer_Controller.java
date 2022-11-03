@@ -266,4 +266,8 @@ public class MovieGoer_Controller {
     public static void listTopFiveMovie(){
         Movie_Controller.listTopFiveMovie();
     }
+
+    public static void addReviews(){
+        Movie_Controller.addReviews(username);
+    }
 }

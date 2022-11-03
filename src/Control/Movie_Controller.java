@@ -1,9 +1,14 @@
 package src.Control;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
 
+import src.Entity.Booking;
 import src.Entity.CONSTANTS;
 import src.Entity.Movie;
+import src.Entity.MovieGoer;
 import src.Entity.Review;
 import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
@@ -161,6 +166,52 @@ public class Movie_Controller {
     }
 
     public static void listTopFiveMovie(){
+        ArrayList<Movie> movieList = getAllMovies();
 
+        Collections.sort(movieList, new Comparator<Movie>() {
+            public int compare(Movie o1, Movie o2) {
+                return o1.getOverallRating().compareTo(o2.getOverallRating());
+            }
+        });
+
+        for(int i=0; i<5 && i<movieList.size(); i++){
+            System.out.println((i+1) + "." + movieList.get(i).getTitle());
+        }
+    }
+
+    public static void addReviews(String username){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("Movie list:");
+        
+        for (int i = 0; i < movieList.size(); i++) {
+            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+        }
+        
+        int movieIndex = MovieGoerMainMenu.getChoice(movieList.size()) - 1;
+        
+        Movie movie = movieList.get(movieIndex); 
+
+        System.out.println("Type in review statement");
+        String statement = sc.nextLine();
+
+        System.out.println("Type in your rating [1-5]");
+        int rating = sc.nextInt();
+
+        ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
+
+        movieGoerList = MovieGoer_Controller.getAllMovieGoers();
+        for(int i=0; i<movieGoerList.size(); i++){
+            if(movieGoerList.get(i).getUsername().equals(username)){
+                MovieGoer movieGoer = movieGoerList.get(i);
+                Review newReview = new Review(statement, rating, movieGoer);
+                movie.addReview(newReview);
+            }
+        }
+        
+        movieList.set(movieIndex, movie);
+        SerializeDB.writeSerializedObject(FILENAME, movieList);
     }
 }

@@ -2,6 +2,7 @@ package src.Boundary.MovieGoerMenu;
 
 import java.util.Scanner;
 
+import src.Boundary.MainMenu;
 import src.Control.MovieGoer_Controller;
 
 public class MovieGoerMainMenu {
@@ -14,7 +15,8 @@ public class MovieGoerMainMenu {
 				"4. Book and purchase ticket\n" +
                 "5. View Booking History \n"+
                 "6. List Top 5 ranking by ticket sales OR by overall reviewers' ratings\n" +
-                "7. Go Back \n");
+                "7. Add Reviews\n" +
+                "8. Go Back \n");
 
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -37,6 +39,12 @@ public class MovieGoerMainMenu {
                 break;
             case 6:
                 MovieGoer_Controller.listTopFiveMovie();
+                break;
+            case 7:
+                MovieGoer_Controller.addReviews();
+                break;
+            case 8:
+                MainMenu.load();
                 break;
             default:
                 System.out.println("Invalid choice, please try again");

@@ -197,9 +197,9 @@ public class Movie implements Serializable{
         return this.review_list;
     }
 
-    public float getOverallRating(){
+    public Float getOverallRating(){
         ArrayList<Review> reviewList = getReview_list();
-        float averageScore = (float) 0.0;
+        Float averageScore = (float) 0.0;
 
         for(int i=0; i<reviewList.size(); i++){
             averageScore += reviewList.get(i).getRate();
@@ -232,4 +232,7 @@ public class Movie implements Serializable{
         this.typeOfMovie = typeOfMovie;
     }
 
+    public void addReview(Review review){
+        review_list.add(review);
+    }
 }
