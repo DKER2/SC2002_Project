@@ -61,6 +61,7 @@ public class AdminMainMenu {
 
     public static int getMovieIndexFromTerminal(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+        ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
 
         System.out.println();
         System.out.println("Movie list:");
@@ -69,13 +70,18 @@ public class AdminMainMenu {
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < movieList.size(); i++) {
             if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
-                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+                showingMovieList.add(movieList.get(i));
             }
         }
+
+        for (int i = 0; i < showingMovieList.size(); i++) {
+            System.out.println((i+1) + "." + showingMovieList.get(i).getTitle());
+        }
+
         System.out.println("Enter your choice:");
         choice = input.nextInt();
         int index = choice - 1;
-        if(index >= movieList.size()){
+        if(index >= showingMovieList.size()){
             System.out.println("Invalid Index, please try again");
             return getMovieIndexFromTerminal();
         }

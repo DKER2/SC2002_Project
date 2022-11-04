@@ -106,10 +106,16 @@ public class MovieGoer_Controller {
 
         System.out.println("--------------Movie list------------");
         
+        ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
+        
         for (int i = 0; i < movieList.size(); i++) {
             if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
-                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+                showingMovieList.add(movieList.get(i));
             }
+        }
+
+        for (int i = 0; i < showingMovieList.size(); i++) {
+            System.out.println((i+1) + "." + showingMovieList.get(i).getTitle());
         }
 
         MovieGoerMainMenu.load();
@@ -173,12 +179,15 @@ public class MovieGoer_Controller {
         System.out.println("Movie list:");
         
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
-        Scanner input = new Scanner(System.in);
+
         for (int i = 0; i < movieList.size(); i++) {
             if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
                 showingMovieList.add(movieList.get(i));
-                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
             }
+        }
+
+        for (int i = 0; i < showingMovieList.size(); i++) {
+            System.out.println((i+1) + "." + showingMovieList.get(i).getTitle());
         }
 
         int choice = MovieGoerMainMenu.getChoice(showingMovieList.size() + 1);
