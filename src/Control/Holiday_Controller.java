@@ -3,6 +3,7 @@ package src.Control;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Entity.Holiday;
@@ -139,5 +140,23 @@ public class Holiday_Controller {
                 Admin_Controller.configSetting();
                 break;
         }
+    }
+
+    public static boolean isHoliday(Date date){
+        boolean isHoliday = false;
+        ArrayList<Holiday> holidayList = Holiday_Controller.getAllHolidays();
+        for(int i=0; i<holidayList.size(); i++){
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal2 = Calendar.getInstance();
+            cal1.setTime(date);
+            cal2.setTime(holidayList.get(i).getDatetime());
+            boolean sameDay = cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                            cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+            if(sameDay){
+                isHoliday = sameDay;
+                break;
+            }
+        }
+        return isHoliday;
     }
 }

@@ -229,6 +229,8 @@ public class MovieGoer_Controller {
 
         showTime.displaySeat();
 
+        System.out.println("[ ]: Normal seat available          [X]: Normal seat taken");
+
         System.out.println("Type in the column of seat you want:");
         int colIndex = MovieGoerMainMenu.getChoice(showTime.getWidthOfSeat()) - 1;
 

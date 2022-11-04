@@ -74,6 +74,11 @@ public class PriceScheme_Controller {
             key = String.format("%s CINEMA && %s MOVIE && AGE > 21", classOfCinema.name(), typeOfMovie.name());
             price  = priceMap.get(key);
         }
+
+        if(Holiday_Controller.isHoliday(showTime)){
+            price += priceMap.get("HOLIDAY INCREASE PRICE");
+        }
+
         return price;
     }
 
