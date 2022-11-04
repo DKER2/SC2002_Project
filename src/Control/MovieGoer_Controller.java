@@ -1,6 +1,8 @@
 package src.Control;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -102,8 +104,7 @@ public class MovieGoer_Controller {
     public static void listAllMovie(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
-        System.out.println();
-        System.out.println("Movie list:");
+        System.out.println("--------------Movie list------------");
         
         for (int i = 0; i < movieList.size(); i++) {
             if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
@@ -131,18 +132,20 @@ public class MovieGoer_Controller {
             System.out.println("Do not find a movie with " + searchString);
         }
         else{
-            System.out.println("Possible Movie: ");
+            System.out.println("--------------------Possible Movie---------------");
             for(int i=0; i<searchResults.size(); i++){
                 System.out.println((i+1) + "." + searchResults.get(i).getTitle());
             }
             System.out.println((searchResults.size()+1) + "." + "Go Back");
 
+            System.out.println("Please choose an Movie to view details, otherwise choose last number to go back");
             int choice = MovieGoerMainMenu.getChoice(searchResults.size()+1);
 
             if(choice==searchResults.size()+1){
                 MovieGoerMainMenu.load();
             }
             else{
+                System.out.println("-----------Details-----------");
                 Movie movie = searchResults.get(choice-1);
                 System.out.println();
                 System.out.println("Title: " + movie.getTitle());
@@ -199,17 +202,23 @@ public class MovieGoer_Controller {
     }
 
     public static void booking(){
+        System.out.println("-----------------Booking-------------");
+
         ArrayList<Cineplex> cineplexList = Cineplex_Controller.getAllCineplexs();
 
         Cineplex_Controller.displayShowTimeOfAllCineplex();
 
+        System.out.println("--------------Choose an cineplex-----------");
         int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size())-1;
 
         Cineplex cineplex = cineplexList.get(cineplexIndex);
 
+        System.out.println("-----------------Booking-------------");
+
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
         Cineplex_Controller.displayShowTimeOfCineplex(cineplex);
 
+        System.out.println("--------------Choose an cinema-----------");
         int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size()) - 1;
 
         Cinema cinema = cinemaList.get(cinemaIndex);
@@ -220,9 +229,12 @@ public class MovieGoer_Controller {
             return;
         }
 
+        System.out.println("-----------------Booking-------------");
+        
         ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
         Cineplex_Controller.displayShowTimeOfCinema(cinema);
 
+        System.out.println("--------------Choose an showtime-----------");
         int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size()) - 1;
 
         ShowTime showTime = showTimeList.get(showTimeIndex);
@@ -296,11 +308,11 @@ public class MovieGoer_Controller {
 
         switch(choice){
             case 1:
-                Movie_Controller.listTopFiveMovieByReview();
+                listTopFiveMovieByReview();
                 MovieGoerMainMenu.load();
                 break;
             case 2:
-                Movie_Controller.listTopFiveMovieBySale();
+                listTopFiveMovieBySale();
                 MovieGoerMainMenu.load();
                 break;
             case 3:
@@ -308,6 +320,36 @@ public class MovieGoer_Controller {
                 break;
         }
         
+    }
+
+    public static void listTopFiveMovieByReview(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+
+        Collections.sort(movieList, new Comparator<Movie>() {
+            public int compare(Movie o1, Movie o2) {
+                return o2.getOverallRating().compareTo(o1.getOverallRating());
+            }
+        });
+
+        System.out.println("----------Top 5 Movie By Review-----------");
+        for(int i=0; i<5 && i<movieList.size(); i++){
+            System.out.println((i+1) + "." + movieList.get(i).getTitle());
+        }
+    }
+
+    public static void listTopFiveMovieBySale(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+
+        Collections.sort(movieList, new Comparator<Movie>() {
+            public int compare(Movie o1, Movie o2) {
+                return o2.getRevenue().compareTo(o1.getRevenue());
+            }
+        });
+
+        System.out.println("----------Top 5 Movie By Sale-----------");
+        for(int i=0; i<5 && i<movieList.size(); i++){
+            System.out.println((i+1) + "." + movieList.get(i).getTitle() + "|" + " Total Sale: " + movieList.get(i).getRevenue());
+        }
     }
 
     public static void addReviews(){

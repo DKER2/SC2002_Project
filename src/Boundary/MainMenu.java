@@ -9,7 +9,7 @@ import src.Boundary.MovieGoerMenu.MovieGoerSignUp;
 
 public class MainMenu {
     public static void load() {
-		System.out.println("Welcome to MOBLIMA");
+		System.out.println("-----------------Welcome to MOBLIMA---------------");
 		System.out.println("Please make a selection: \n" +
 				  "1. Movie Goer Login \n" +
 				  "2. Movie Goer Registration \n" +
