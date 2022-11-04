@@ -21,5 +21,5 @@ public class CONSTANTS {
 
     public enum Censorship {G, PG, PG13, NC16, M18, R21}
 
-    public enum TypeOfMovie {DIGITAL, BLOCKBUSTER,NORMAL}
+    public enum TypeOfMovie {DIGITAL, BLOCKBUSTER, _3D}
 }

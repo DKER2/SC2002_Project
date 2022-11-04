@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 
 public class Movie implements Serializable{
+    private static final long serialVersionUID = 4L;
     /**
 	* The title of the movie
 	*/
@@ -234,5 +235,9 @@ public class Movie implements Serializable{
 
     public void addReview(Review review){
         review_list.add(review);
+    }
+
+    public Integer getRevenue() {
+        return this.revenue;
     }
 }

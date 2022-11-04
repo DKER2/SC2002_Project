@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MovieGoer extends User{
+    private static final long serialVersionUID = 3L;
+
     private String name;
     private String email;
     private String phone;

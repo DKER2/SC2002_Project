@@ -1,16 +1,12 @@
 package src.Control;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import javax.sound.midi.SysexMessage;
 
 import src.Boundary.MainMenu;
 import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Entity.Admin;
-import src.Entity.Holiday;
 import src.utils.SerializeDB;
 
 public class Admin_Controller {
@@ -203,7 +199,7 @@ public class Admin_Controller {
 
         switch(choice){
             case 1:
-                //ticket price update
+                PriceScheme_Controller.configurePrice();
                 break;
             case 2:
                 Holiday_Controller.configureHolidays();

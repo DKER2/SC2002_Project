@@ -1,8 +1,5 @@
 package src.Entity;
 import java.io.Serializable;
-import java.util.concurrent.CyclicBarrier;
-
-import src.Entity.CONSTANTS;
 
 public class Seat implements Serializable{
 

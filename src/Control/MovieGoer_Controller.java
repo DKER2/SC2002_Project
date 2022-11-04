@@ -1,6 +1,7 @@
 package src.Control;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 import src.Boundary.MainMenu;
@@ -105,7 +106,9 @@ public class MovieGoer_Controller {
         System.out.println("Movie list:");
         
         for (int i = 0; i < movieList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            }
         }
 
         MovieGoerMainMenu.load();
@@ -152,6 +155,7 @@ public class MovieGoer_Controller {
                 }
                 System.out.println("Showing status: " + movie.getShowingStatus());
                 System.out.println("Overall rating: " + movie.getOverallRating());
+                System.out.println("Rating: " + movie.getCensorship().name());
                 System.out.println();
             }
         }
@@ -165,14 +169,18 @@ public class MovieGoer_Controller {
         System.out.println();
         System.out.println("Movie list:");
         
+        ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < movieList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+                showingMovieList.add(movieList.get(i));
+                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            }
         }
 
-        int choice = MovieGoerMainMenu.getChoice(movieList.size() + 1);
+        int choice = MovieGoerMainMenu.getChoice(showingMovieList.size() + 1);
 
-        Movie movie = movieList.get(choice - 1);
+        Movie movie = showingMovieList.get(choice - 1);
         System.out.println();
         System.out.println("Title: " + movie.getTitle());
         System.out.println("Type of movie: " + movie.getTypeOfMovie());
@@ -184,6 +192,7 @@ public class MovieGoer_Controller {
         }
         System.out.println("Showing status: " + movie.getShowingStatus());
         System.out.println("Overall rating: " + movie.getOverallRating());
+        System.out.println("Rating: " + movie.getCensorship().name());
         System.out.println();
 
         MovieGoerMainMenu.load();
@@ -194,21 +203,27 @@ public class MovieGoer_Controller {
 
         Cineplex_Controller.displayShowTimeOfAllCineplex();
 
-        int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size() + 1)-1;
+        int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size())-1;
 
         Cineplex cineplex = cineplexList.get(cineplexIndex);
 
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
         Cineplex_Controller.displayShowTimeOfCineplex(cineplex);
 
-        int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size() + 1) - 1;
+        int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size()) - 1;
 
         Cinema cinema = cinemaList.get(cinemaIndex);
+
+        if(cinema.getShowTimeList().size()==0){
+            System.out.println("There is no show time to book in this cinema, try again");
+            booking();
+            return;
+        }
 
         ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
         Cineplex_Controller.displayShowTimeOfCinema(cinema);
 
-        int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size() + 1) - 1;
+        int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size()) - 1;
 
         ShowTime showTime = showTimeList.get(showTimeIndex);
 
@@ -227,9 +242,15 @@ public class MovieGoer_Controller {
 
             for(int i=0; i<movieGoerList.size(); i++){
                 if(movieGoerList.get(i).getUsername().equals(MovieGoer_Controller.username)){
-                    Booking newBooking =  new Booking(colIndex+1, rowIndex+1, (float) 12.5, showTime.getMovie(), cinema, cineplex);
+                    Float price = PriceScheme_Controller.caculatePrice(cinema.getClassOfCinema(), showTime.getMovie().getTypeOfMovie(), movieGoerList.get(i).getAge(), showTime.getShowTime());
+                    System.out.println("Your ticket price is " + price);
+                    System.out.println("Press enter to confirm booking");
+                    Scanner sc = new Scanner(System.in);
+                    sc.nextLine();
+                    Booking newBooking =  new Booking(colIndex+1, rowIndex+1, price, showTime.getMovie(), cinema, cineplex);
                     movieGoerList.get(i).booking(newBooking);
                     Movie_Controller.increaseRevenue(newBooking.getMovie());
+                    System.out.println("Booking Succesfully");
                 }
             }
 
@@ -238,7 +259,6 @@ public class MovieGoer_Controller {
             cineplexList.set(cineplexIndex, cineplex);
             Cineplex_Controller.save(cineplexList);
 
-            System.out.println("Booking Succesfully");
             MovieGoerMainMenu.load();
         }
     }
@@ -256,7 +276,8 @@ public class MovieGoer_Controller {
                     System.out.println("Title: " + bookingList.get(j).getMovie().getTitle() + "|" +
                     "Seat: " + bookingList.get(j).getSeatColumn() + " " + bookingList.get(j).getSeatRow() + "|" +
                     "Cinema: " + bookingList.get(j).getCinema().getCinemaCode() + "|" +
-                    "Cineplex: " + bookingList.get(j).getCineplex().getCineplexName());
+                    "Cineplex: " + bookingList.get(j).getCineplex().getCineplexName() + "|" +
+                    "TransactionId: " + bookingList.get(j).getTransactionId());
                 }
             }
         }
@@ -264,10 +285,31 @@ public class MovieGoer_Controller {
     }
 
     public static void listTopFiveMovie(){
-        Movie_Controller.listTopFiveMovie();
+        System.out.println("Top Five Movie According to");
+        System.out.println("1. Review \n" +
+        "2. Sale \n" +
+        "3. Go Back ");
+
+        int choice = MovieGoerMainMenu.getChoice(3);
+
+        switch(choice){
+            case 1:
+                Movie_Controller.listTopFiveMovieByReview();
+                MovieGoerMainMenu.load();
+                break;
+            case 2:
+                Movie_Controller.listTopFiveMovieBySale();
+                MovieGoerMainMenu.load();
+                break;
+            case 3:
+                MovieGoerMainMenu.load();
+                break;
+        }
+        
     }
 
     public static void addReviews(){
         Movie_Controller.addReviews(username);
+        MovieGoerMainMenu.load();
     }
 }

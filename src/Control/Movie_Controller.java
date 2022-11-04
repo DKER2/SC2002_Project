@@ -165,17 +165,31 @@ public class Movie_Controller {
         SerializeDB.writeSerializedObject(FILENAME, MovieList);
     }
 
-    public static void listTopFiveMovie(){
+    public static void listTopFiveMovieByReview(){
         ArrayList<Movie> movieList = getAllMovies();
 
         Collections.sort(movieList, new Comparator<Movie>() {
             public int compare(Movie o1, Movie o2) {
-                return o1.getOverallRating().compareTo(o2.getOverallRating());
+                return o2.getOverallRating().compareTo(o1.getOverallRating());
             }
         });
 
         for(int i=0; i<5 && i<movieList.size(); i++){
             System.out.println((i+1) + "." + movieList.get(i).getTitle());
+        }
+    }
+
+    public static void listTopFiveMovieBySale(){
+        ArrayList<Movie> movieList = getAllMovies();
+
+        Collections.sort(movieList, new Comparator<Movie>() {
+            public int compare(Movie o1, Movie o2) {
+                return o2.getRevenue().compareTo(o1.getRevenue());
+            }
+        });
+
+        for(int i=0; i<5 && i<movieList.size(); i++){
+            System.out.println((i+1) + "." + movieList.get(i).getTitle() + "|" + " Total Sale: " + movieList.get(i).getRevenue());
         }
     }
 

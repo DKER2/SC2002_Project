@@ -6,7 +6,7 @@ import src.Control.Admin_Controller;
 
 public class AdminLogin {
     public static void load() {
-		System.out.println("Logging In Account");
+		System.out.println("----------------Logging In Account--------------");
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Type In Username:");

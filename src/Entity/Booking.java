@@ -1,8 +1,11 @@
 package src.Entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Booking implements Serializable {
+    private String transactionId;
     private int seatRow;
     private int seatColumn;
     private float price;
@@ -17,6 +20,11 @@ public class Booking implements Serializable {
         this.movie = movie;
         this.cinema = cinema;
         this.cineplex = cineplex;
+
+        Date date = new Date();
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMddhhmm");
+        System.out.println(dt1.format(date));
+        this.transactionId = cinema.getCinemaCode() + dt1.format(date);
     }
 
 
@@ -68,4 +76,8 @@ public class Booking implements Serializable {
         this.movie = movie;
     }
 
+
+    public String getTransactionId() {
+        return this.transactionId;
+    }
 }

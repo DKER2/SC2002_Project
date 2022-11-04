@@ -11,7 +11,7 @@ import src.Entity.Movie;
 
 public class AdminMainMenu {
     public static void load() {
-        System.out.println("Admin");
+        System.out.println("------------Admin----------");
 		System.out.println("Choose from one of the following options: \n" +
 				"1. Create/Update/Remove Movie \n" + 
 				"2. Create/Update/Remove cinema showtimes and movies to be shown \n" +
@@ -68,7 +68,9 @@ public class AdminMainMenu {
         int choice = 0;
         Scanner input = new Scanner(System.in);
         for (int i = 0; i < movieList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+                System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            }
         }
         System.out.println("Enter your choice:");
         choice = input.nextInt();
@@ -194,7 +196,7 @@ public class AdminMainMenu {
         System.out.println("==== Please choose type of movie ====");
         System.out.println("1. DIGITAL");
         System.out.println("2. BLOCKBUSTER");
-        System.out.println("3. NORMAL");
+        System.out.println("3. 3D");
         System.out.println("Enter your choice:");
         CONSTANTS.TypeOfMovie censorStatus;
         switch(sc.nextInt()){
@@ -205,7 +207,7 @@ public class AdminMainMenu {
                 censorStatus = CONSTANTS.TypeOfMovie.BLOCKBUSTER;
                 break;
             case 3:
-                censorStatus = CONSTANTS.TypeOfMovie.NORMAL;
+                censorStatus = CONSTANTS.TypeOfMovie._3D;
                 break;
             default:
                 censorStatus = CONSTANTS.TypeOfMovie.DIGITAL;

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Holiday implements Serializable{
+    private static final long serialVersionUID = 5L;
+
     private Date datetime;
 
     private String name;

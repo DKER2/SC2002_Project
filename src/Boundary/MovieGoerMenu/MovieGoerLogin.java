@@ -6,7 +6,7 @@ import src.Control.MovieGoer_Controller;
 
 public class MovieGoerLogin {
     public static void load() {
-		System.out.println("Logging In Account");
+		System.out.println("-----------Logging In Account------------");
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Type In Username:");

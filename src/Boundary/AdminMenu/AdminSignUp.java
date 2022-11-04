@@ -6,7 +6,7 @@ import src.Control.Admin_Controller;
 
 public class AdminSignUp {
     public static void load() {
-        System.out.println("Signing Up Account");
+        System.out.println("-----------------Signing Up Account----------");
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Type In Username:");
