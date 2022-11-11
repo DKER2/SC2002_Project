@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import src.Boundary.MainMenu;
 import src.Control.Admin_Controller;
+import src.Control.Cineplex_Controller;
 import src.Control.Movie_Controller;
 import src.Entity.CONSTANTS;
 import src.Entity.Movie;
@@ -23,10 +24,10 @@ public class AdminMainMenu {
 
         switch(choice){
             case 1:
-                Admin_Controller.createUpdateMovie();
+                Movie_Controller.createUpdateMovie();
                 break;
             case 2:
-                Admin_Controller.createUpdateShowTime();
+                Cineplex_Controller.createUpdateShowTime();
                 break;
             case 3:
                 Admin_Controller.configSetting();
@@ -40,8 +41,6 @@ public class AdminMainMenu {
                 break;
         }
 	}
-
-    
     
     public static int getUpdateOptionFromTerminal(){
         Scanner input = new Scanner(System.in);

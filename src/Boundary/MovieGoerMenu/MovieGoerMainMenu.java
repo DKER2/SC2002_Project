@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import src.Boundary.MainMenu;
 import src.Control.MovieGoer_Controller;
+import src.Control.Movie_Controller;
 
 public class MovieGoerMainMenu {
     public static void load() {
@@ -23,13 +24,13 @@ public class MovieGoerMainMenu {
 
         switch(choice){
             case 1:
-                MovieGoer_Controller.listAllMovie();
+                Movie_Controller.listAllMovie();
                 break;
             case 2:
-                MovieGoer_Controller.searchMovie();
+                Movie_Controller.searchMovie();
                 break;
             case 3:
-                MovieGoer_Controller.viewDetails();
+                Movie_Controller.viewMovieDetails();
                 break;
             case 4:
                 MovieGoer_Controller.booking();
@@ -38,7 +39,7 @@ public class MovieGoerMainMenu {
                 MovieGoer_Controller.viewHistoryBook();
                 break;
             case 6:
-                MovieGoer_Controller.listTopFiveMovie();
+                Movie_Controller.listTopFiveMovie();
                 break;
             case 7:
                 MovieGoer_Controller.addReviews();

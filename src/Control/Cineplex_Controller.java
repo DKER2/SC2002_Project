@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
@@ -224,10 +225,10 @@ public class Cineplex_Controller {
                 AdminMainMenu.load();
                 break;
             case 3:
-                Admin_Controller.createUpdateShowTime();
+                Cineplex_Controller.createUpdateShowTime();
                 break;
             default:
-                Admin_Controller.createUpdateShowTime();
+                Cineplex_Controller.createUpdateShowTime();
                 break;
         }
     }
@@ -264,6 +265,36 @@ public class Cineplex_Controller {
         SerializeDB.writeSerializedObject(FILENAME, cineplexList);
 
         AdminMainMenu.load();
+    }
+
+    public static void createUpdateShowTime(){
+        Cineplex_Controller.displayShowTimeOfAllCineplex();
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------Create/Update/Remove Show Time-----------");
+        System.out.println("Choose from one of the following options: \n" +
+                "1. Create \n" + 
+                "2. Update \n" +
+                "3. Remove \n"+
+                "4. Go back\n");
+        
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1:
+                Cineplex_Controller.createShowTime();
+                createUpdateShowTime();
+                break;
+            case 2:
+                Cineplex_Controller.updateShowTime();
+                break;
+            case 3:
+                Cineplex_Controller.removeShowTime();
+                break;
+            case 4:
+                AdminMainMenu.load();
+                break;
+        }
     }
 
     public static void main(String args[]){
