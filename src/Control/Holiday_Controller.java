@@ -72,6 +72,10 @@ public class Holiday_Controller {
         
         switch(choice){
             case 1:
+                if(holidayList.size()==0){
+                    System.out.println("There are no holiday to update");
+                    break;
+                }
                 System.out.println("----------Holiday Configure---------");
                 System.out.println("Holiday List:");
                 for(int i=0; i<holidayList.size(); i++){
