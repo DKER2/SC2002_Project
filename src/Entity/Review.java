@@ -3,6 +3,8 @@ package src.Entity;
 import java.io.Serializable;
 
 public class Review implements Serializable{
+    private static final long serialVersionUID = 7L;
+
     private String statement;
 
     private Integer rate;
@@ -34,9 +36,5 @@ public class Review implements Serializable{
 
     public MovieGoer getMovieGoer() {
         return this.movieGoer;
-    }
-
-    public void setMovieGoer(MovieGoer movieGoer) {
-        this.movieGoer = movieGoer;
     }
 }

@@ -2,6 +2,7 @@ package src.Entity;
 import java.io.Serializable;
 
 public class Seat implements Serializable{
+    private static final long serialVersionUID = 6L;
 
     /**
      * Seat ID

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 public class ShowTime implements Serializable{
+    private static final long serialVersionUID = 8L;
     /**
      * Movie object with information on Movie
      */

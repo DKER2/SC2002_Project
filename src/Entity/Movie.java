@@ -221,10 +221,6 @@ public class Movie implements Serializable{
         this.censorship = censorship;
     }
 
-    public void setReview_list(ArrayList<Review> review_list) {
-        this.review_list = review_list;
-    }
-
     public CONSTANTS.TypeOfMovie getTypeOfMovie() {
         return this.typeOfMovie;
     }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import src.Entity.CONSTANTS.ClassOfCinema;
 
 public class Cinema implements Serializable{
+	private static final long serialVersionUID = 10L;
+	
 	private ClassOfCinema classOfCinema;
     /**
      * Cinema code used for Transaction ID.

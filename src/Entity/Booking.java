@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Booking implements Serializable {
+    private static final long serialVersionUID = 9L;
+    
     private String transactionId;
     private int seatRow;
     private int seatColumn;
@@ -32,50 +34,25 @@ public class Booking implements Serializable {
         return this.seatRow;
     }
 
-    public void setSeatRow(int seatRow) {
-        this.seatRow = seatRow;
-    }
-
     public int getSeatColumn() {
         return this.seatColumn;
-    }
-
-    public void setSeatColumn(int seatColumn) {
-        this.seatColumn = seatColumn;
     }
 
     public float getPrice() {
         return this.price;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
     public Cinema getCinema() {
         return this.cinema;
-    }
-
-    public void setCinema(Cinema cinema) {
-        this.cinema = cinema;
     }
 
     public Cineplex getCineplex() {
         return this.cineplex;
     }
 
-    public void setCineplex(Cineplex cineplex) {
-        this.cineplex = cineplex;
-    }
-
     public Movie getMovie() {
         return this.movie;
     }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
 
     public String getTransactionId() {
         return this.transactionId;

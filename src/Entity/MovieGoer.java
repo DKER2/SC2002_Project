@@ -25,42 +25,21 @@ public class MovieGoer extends User{
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getEmail() {
         return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {
         return this.phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public int getAge() {
         return this.age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public ArrayList<Booking> getBookingList() {
         return this.bookingList;
     }
-
-    public void setBookingList(ArrayList<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
     
     public void booking(Booking newBooking){
         bookingList.add(newBooking);

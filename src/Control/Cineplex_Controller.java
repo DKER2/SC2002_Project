@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
+
 import src.Entity.Cinema;
 import src.Entity.Cineplex;
 import src.Entity.Movie;
@@ -139,7 +141,8 @@ public class Cineplex_Controller {
         displayShowTimeOfCinema(cinema);
 
         int movieIndex = AdminMainMenu.getMovieIndexFromTerminal();
-        Movie movie = Movie_Controller.getAllMovies().get(movieIndex);
+        Movie movie = Movie_Controller.getAllShowingMovies().get(movieIndex);
+        System.out.println(movie.getTitle());
         
         System.out.println("Type in Date");
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy HH:mm");  

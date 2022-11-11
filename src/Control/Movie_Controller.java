@@ -31,6 +31,21 @@ public class Movie_Controller {
         return MovieList;
     }
 
+    public static ArrayList<Movie> getAllShowingMovies(){
+        ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
+        ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
+
+        int choice = 0;
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < movieList.size(); i++) {
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+                showingMovieList.add(movieList.get(i));
+            }
+        }
+
+        return showingMovieList;
+    }
+
     public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.Censorship censorship, CONSTANTS.TypeOfMovie typeOfMovie, String sysnopsis, String director, ArrayList<String> actorList){
         ArrayList<Review> review_list = new ArrayList<Review>();
         Movie Movie = new Movie(title, showingStatus, censorship, typeOfMovie, sysnopsis, director, actorList, 0, review_list);
