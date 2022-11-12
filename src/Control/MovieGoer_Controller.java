@@ -203,6 +203,8 @@ public class MovieGoer_Controller {
             for(int i=0; i<movieGoerList.size(); i++){
                 if(movieGoerList.get(i).getUsername().equals(MovieGoer_Controller.username)){
                     Float price = PriceScheme_Controller.caculatePrice(cinema.getClassOfCinema(), showTime.getMovie().getTypeOfMovie(), movieGoerList.get(i).getAge(), showTime.getShowTime());
+                    MovieGoerMainMenu.displayString("Movie: " + showTime.getMovie().getTitle() + "\n");
+                    MovieGoerMainMenu.displayString("Showtime: " + showTime.getShowTime() + "\n");
                     MovieGoerMainMenu.displayString("Your ticket price is " + price + "\n");
                     MovieGoerMainMenu.displayString("Press enter to confirm booking \n");
                     Scanner sc = new Scanner(System.in);
@@ -220,6 +222,10 @@ public class MovieGoer_Controller {
             Cineplex_Controller.save(cineplexList);
 
             MovieGoerMainMenu.load();
+        }
+        else{
+            MovieGoerMainMenu.displayString("The seat is occupied \n \n");
+            booking();
         }
     }
 

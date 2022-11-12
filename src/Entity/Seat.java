@@ -59,7 +59,6 @@ public class Seat implements Serializable{
      */
     public boolean bookSeat(String owner){
         if(seatStatus.equals(CONSTANTS.seatStatus.TAKEN)){
-            System.out.println("The seat have been occupied, sorry");
             return false;
         }
         this.seatStatus = CONSTANTS.seatStatus.TAKEN;
