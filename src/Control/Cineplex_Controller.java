@@ -342,14 +342,19 @@ public class Cineplex_Controller {
         }
         //ArrayList<ShowTime> showTimeList = new ArrayList<ShowTime>();
         ArrayList<Cinema> cathyCinema = new ArrayList<Cinema>();
-        cathyCinema.add(new Cinema(CONSTANTS.ClassOfCinema.GOLD, "JEM", 12, 12, seats));
-        cathyCinema.add(new Cinema(CONSTANTS.ClassOfCinema.MAX, "WES", 12, 12, seats));
+        cathyCinema.add(new Cinema(CONSTANTS.ClassOfCinema.GOLD, "JEM", 9, 12, seats));
+        cathyCinema.add(new Cinema(CONSTANTS.ClassOfCinema.MAX, "WES", 12, 10, seats));
         cathyCinema.add(new Cinema(CONSTANTS.ClassOfCinema.NORMAL, "AMK", 12, 12, seats));
         addCineplex("Jurong Point Cineplex", cathyCinema);
         ArrayList<Cinema> goldenVillage = new ArrayList<Cinema>();
-        goldenVillage.add(new Cinema(CONSTANTS.ClassOfCinema.GOLD, "VIV", 12, 12, seats));
-        goldenVillage.add(new Cinema(CONSTANTS.ClassOfCinema.MAX, "CIT", 12, 12, seats));
+        goldenVillage.add(new Cinema(CONSTANTS.ClassOfCinema.GOLD, "VIV", 9, 9, seats));
+        goldenVillage.add(new Cinema(CONSTANTS.ClassOfCinema.MAX, "CIT", 10, 9, seats));
         goldenVillage.add(new Cinema(CONSTANTS.ClassOfCinema.NORMAL, "JUR", 12, 12, seats));
         addCineplex("Vivo City Cineplex", goldenVillage);
+        ArrayList<Cinema> filmgarde = new ArrayList<Cinema>();
+        filmgarde.add(new Cinema(CONSTANTS.ClassOfCinema.GOLD, "ABA", 12, 12, seats));
+        filmgarde.add(new Cinema(CONSTANTS.ClassOfCinema.MAX, "KLL", 10, 10, seats));
+        filmgarde.add(new Cinema(CONSTANTS.ClassOfCinema.NORMAL, "PIO", 9, 12, seats));
+        addCineplex("Kallang Cineplex", filmgarde);
     }
 }

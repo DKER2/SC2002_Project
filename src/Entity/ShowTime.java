@@ -142,4 +142,12 @@ public class ShowTime implements Serializable{
     public Seat[][] getSeats(){ //returns which cinema the movie is showing
         return seats;
     }
+
+    /**
+     * Gets Cineplex 
+     * @return Cineplex for this showtime
+     */
+    public Cineplex getCineplex(){ //returns which cinema the movie is showing
+        return cineplex;
+    }
 }

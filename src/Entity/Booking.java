@@ -28,20 +28,12 @@ public class Booking implements Serializable {
      */
     private float price;
 
-    /**
-     * Movie.
-     */
-    private Movie movie;
+    private ShowTime showTime;
 
     /**
-     * Cunema.
+     * Date Time of Show.
      */
-    private Cinema cinema;
-
-    /**
-     * Cineplex.
-     */
-    private Cineplex cineplex;
+    private Date date;
 
     /**
 	 * Constructor for Cinema Object
@@ -52,17 +44,15 @@ public class Booking implements Serializable {
      * @param cinema cinema
      * @param cineplex cineplex
 	 */
-    public Booking(int seatRow, int seatColumn, float price, Movie movie, Cinema cinema, Cineplex cineplex) {
+    public Booking(int seatRow, int seatColumn, float price, ShowTime showTime) {
         this.seatRow = seatRow;
         this.seatColumn = seatColumn;
         this.price = price;
-        this.movie = movie;
-        this.cinema = cinema;
-        this.cineplex = cineplex;
+        this.showTime = showTime;
 
         Date date = new Date();
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMddhhmm");
-        this.transactionId = cinema.getCinemaCode() + dt1.format(date);
+        this.transactionId = showTime.getCinema().getCinemaCode() + dt1.format(date);
     }
 
     /**
@@ -88,36 +78,20 @@ public class Booking implements Serializable {
     public float getPrice() {
         return this.price;
     }
-
-    /**
-	 * Get Cinema
-     * @return Cinema of Booking
-	 */
-    public Cinema getCinema() {
-        return this.cinema;
-    }
-
-    /**
-	 * Get Cineplex
-     * @return Cineplex of Booking
-	 */
-    public Cineplex getCineplex() {
-        return this.cineplex;
-    }
-
-    /**
-	 * Get Movie
-     * @return Movie of Booking
-	 */
-    public Movie getMovie() {
-        return this.movie;
-    }
-
+    
     /**
 	 * Get transactionId
      * @return transactionId of Booking
 	 */
     public String getTransactionId() {
         return this.transactionId;
+    }
+
+     /**
+	 * Get Show Time
+     * @return Price of Booking
+	 */
+    public ShowTime getShowTime() {
+        return this.showTime;
     }
 }

@@ -163,7 +163,7 @@ public class MovieGoer_Controller {
             return;
         }
 
-        MovieGoerMainMenu.displayString("-----------------Booking-------------\n");
+        MovieGoerMainMenu.displayString("-----------------Booking---------------\n");
         
         ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
         Cineplex_Controller.displayShowTimeOfCinema(cinema);
@@ -209,9 +209,9 @@ public class MovieGoer_Controller {
                     MovieGoerMainMenu.displayString("Press enter to confirm booking \n");
                     Scanner sc = new Scanner(System.in);
                     sc.nextLine();
-                    Booking newBooking =  new Booking(colIndex+1, rowIndex+1, price, showTime.getMovie(), cinema, cineplex);
+                    Booking newBooking =  new Booking(colIndex+1, rowIndex+1, price, showTime);
                     movieGoerList.get(i).booking(newBooking);
-                    Movie_Controller.increaseRevenue(newBooking.getMovie());
+                    Movie_Controller.increaseRevenue(newBooking.getShowTime().getMovie());
                     MovieGoerMainMenu.displayString("Booking Succesfully\n");
                 }
             }
@@ -242,11 +242,12 @@ public class MovieGoer_Controller {
                 MovieGoer movieGoer = movieGoerList.get(i);
                 ArrayList<Booking> bookingList = movieGoer.getBookingList();
                 for(int j=0; j<bookingList.size(); j++){
-                    MovieGoerMainMenu.displayString("Title: " + bookingList.get(j).getMovie().getTitle() + "|" +
+                    MovieGoerMainMenu.displayString("Title: " + bookingList.get(j).getShowTime().getMovie().getTitle() + "|" +
                     "Seat: " + bookingList.get(j).getSeatColumn() + " " + bookingList.get(j).getSeatRow() + "|" +
-                    "Cinema: " + bookingList.get(j).getCinema().getCinemaCode() + "|" +
-                    "Cineplex: " + bookingList.get(j).getCineplex().getCineplexName() + "|" +
-                    "TransactionId: " + bookingList.get(j).getTransactionId() + "\n");
+                    "Cinema: " + bookingList.get(j).getShowTime().getCinema().getCinemaCode() + "|" +
+                    "Cineplex: " + bookingList.get(j).getShowTime().getCineplex().getCineplexName() + "|" +
+                    "TransactionId: " + bookingList.get(j).getTransactionId() + "|" +
+                    "Date: " + bookingList.get(j).getShowTime().getShowTime() + "\n");
                 }
             }
         }
