@@ -31,7 +31,7 @@ public class MainMenu {
 				MovieGoerSignUp.load();
 				break;
 			case 3:
-                AdminLogin.load();
+                		AdminLogin.load();
 				break;
 			case 4:
 				AdminSignUp.load();
@@ -42,7 +42,7 @@ public class MainMenu {
 				break;
 			default:
 				System.out.println("Invalid selection, please try again.");
-                load();
+                		load();
 		}
 	}
 }
