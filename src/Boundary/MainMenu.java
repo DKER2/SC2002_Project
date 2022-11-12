@@ -17,8 +17,7 @@ public class MainMenu {
 				  "1. Movie Goer Login \n" +
 				  "2. Movie Goer Registration \n" +
 				  "3. Admin Login\n" +
-				  "4. Admin SignUp\n" +
-				  "5. Exit \n");
+				  "4. Exit \n");
 		
 		Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -31,12 +30,9 @@ public class MainMenu {
 				MovieGoerSignUp.load();
 				break;
 			case 3:
-                		AdminLogin.load();
+                AdminLogin.load();
 				break;
 			case 4:
-				AdminSignUp.load();
-				break;
-			case 5:
 				System.out.println("Exitting application...");
 				System.exit(1);
 				break;
