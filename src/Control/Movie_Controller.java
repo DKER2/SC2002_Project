@@ -293,6 +293,10 @@ public class Movie_Controller {
         for (int i = 0; i < movie.getActorList().size(); i++) {
             MovieGoerMainMenu.displayString(" *" + movie.getActorList().get(i) +"\n");
         }
+        MovieGoerMainMenu.displayString("Review: " + "\n");
+        for (int i = 0; i < movie.getReview_list().size(); i++) {
+            MovieGoerMainMenu.displayString(" *" + movie.getReview_list().get(i).getStatement() + " from " + movie.getReview_list().get(i).getMovieGoer().getName() +"\n");
+        }
         MovieGoerMainMenu.displayString("Showing status: " + movie.getShowingStatus() + "\n");
         MovieGoerMainMenu.displayString("Overall rating: " + movie.getOverallRating() + "\n");
         MovieGoerMainMenu.displayString("Rating: " + movie.getCensorship().name() + "\n");
