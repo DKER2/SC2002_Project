@@ -271,7 +271,8 @@ public class Movie_Controller {
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
 
         for (int i = 0; i < movieList.size(); i++) {
-            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)
+            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
                 showingMovieList.add(movieList.get(i));
             }
         }
@@ -310,7 +311,7 @@ public class Movie_Controller {
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
         
         for (int i = 0; i < movieList.size(); i++) {
-            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING) || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
                 showingMovieList.add(movieList.get(i));
             }
         }
@@ -333,7 +334,8 @@ public class Movie_Controller {
         ArrayList<Movie> searchResults = new ArrayList<Movie>();
 
         for(int i=0; i<movieList.size(); i++){
-            if(movieList.get(i).getTitle().contains(searchString) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)){
+            if(movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING) ||
+            movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
                 searchResults.add(movieList.get(i));
             }
         }
