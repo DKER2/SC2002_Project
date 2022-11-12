@@ -24,6 +24,11 @@ public class Movie_Controller {
     final static int CHANGE_DIRECTOR = 3;
     final static int CHANGE_ACTOR = 4;
     final static int CHANGE_SHOWINGSTATUS = 5;
+    /*
+     * attribute for admin to control accessibility of top 5 listing
+     */
+    private static int saleEnable = 1;
+    private static int reviewEnable = 1;
 
     /**
      * Get all movies
@@ -389,6 +394,7 @@ public class Movie_Controller {
 	 */
     public static void listTopFiveMovie(){
         MovieGoerMainMenu.displayString("Top Five Movie According to \n");
+
         MovieGoerMainMenu.displayString("1. Review \n" +
         "2. Sale \n" +
         "3. Go Back \n");
@@ -397,11 +403,19 @@ public class Movie_Controller {
 
         switch(choice){
             case 1:
+                if (reviewEnable == 1)
                 listTopFiveMovieByReview();
+                else {
+                    MovieGoerMainMenu.displayString("Access restricted! \n");
+                }
                 MovieGoerMainMenu.load();
                 break;
             case 2:
+                if (saleEnable == 1)
                 listTopFiveMovieBySale();
+                else {
+                    MovieGoerMainMenu.displayString("Access restricted! \n");
+                }
                 MovieGoerMainMenu.load();
                 break;
             case 3:
@@ -473,4 +487,47 @@ public class Movie_Controller {
                 break;
         }
     }
+
+    /*
+     * Configure accessibility of Top 5 by review/sale
+     * 
+     */
+    public static void configureTop5(){
+        AdminMainMenu.displayString("Configure accessibility of Top 5 ranking for movie-goer \n");
+        AdminMainMenu.displayString("Choose from one of the following options: \n" +
+                "1. Top 5 by Review \n" + 
+                "2. Top 5 by Sale \n");
+        
+        int choice = AdminMainMenu.getChoice(2);
+
+        switch(choice){
+            case 1:
+            AdminMainMenu.displayString("1. Enable listing by Review \n" +
+                                        "2. Disable listing by Review \n");
+            
+            int rchoice = AdminMainMenu.getChoice(2);
+
+            if (rchoice == 1){
+                reviewEnable = 1;
+            }
+            else reviewEnable = 0;
+            AdminMainMenu.displayString("Configured successfully! \n");
+            AdminMainMenu.load();
+                break;
+            case 2:
+            AdminMainMenu.displayString("1. Enable listing by Sale \n" +
+                                        "2. Disable listing by Sale \n");
+
+            int schoice = AdminMainMenu.getChoice(2);
+
+            if (schoice == 1){
+                saleEnable = 1;
+            }
+            else saleEnable = 0;
+            AdminMainMenu.displayString("Configured successfully! \n");
+            AdminMainMenu.load();
+                break;
+        }
+    }
+
 }

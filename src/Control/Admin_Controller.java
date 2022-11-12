@@ -174,7 +174,8 @@ public class Admin_Controller {
         AdminMainMenu.displayString("Choose from one of the following options: \n" +
                 "1. Update Ticket Price \n" + 
                 "2. Holidays \n" +
-                "3. Back \n");
+                "3. Configure Accessibility of Top 5 Listing \n" +
+                "4. Back \n");
         
         int choice = AdminMainMenu.getChoice(3);
 
@@ -186,6 +187,9 @@ public class Admin_Controller {
                 Holiday_Controller.configureHolidays();
                 break;
             case 3:
+                Movie_Controller.configureTop5();
+                break;
+            case 4:
                 AdminMainMenu.load();
                 break;
         }
