@@ -169,7 +169,7 @@ public class Cineplex_Controller {
 
         displayShowTimeOfCinema(cinema);
 
-        int movieIndex = AdminMainMenu.getMovieIndexFromTerminal();
+        int movieIndex = AdminMainMenu.getShowingMovieIndexFromTerminal();
         Movie movie = Movie_Controller.getAllShowingMovies().get(movieIndex);
         AdminMainMenu.displayString(movie.getTitle() + "\n");
         
@@ -233,7 +233,7 @@ public class Cineplex_Controller {
         switch(choice){
             case 1:
                 AdminMainMenu.displayString("Choose a movie to subtitue into time slot\n");
-                int movieIndex = AdminMainMenu.getMovieIndexFromTerminal();
+                int movieIndex = AdminMainMenu.getShowingMovieIndexFromTerminal();
                 showTime.setMovie(Movie_Controller.getAllMovies().get(movieIndex));
                 cineplex.updateShowTime(cinema.getCinemaCode(), showTime, showTimeIndex);
                 cineplexList.set(cineplexIndex, cineplex);
