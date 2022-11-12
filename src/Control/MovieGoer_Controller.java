@@ -131,6 +131,73 @@ public class MovieGoer_Controller {
             MainMenu.load();
 		}
     }
+/**
+ * Show seat availability
+ * 
+ */
+
+    public static void showSeatAvailability(){
+        MovieGoerMainMenu.displayString("-----------------Show seat availability-------------\n");
+
+        ArrayList<Cineplex> cineplexList = Cineplex_Controller.getAllCineplexs();
+
+        Cineplex_Controller.displayShowTimeOfAllCineplex();
+
+        MovieGoerMainMenu.displayString("--------------Choose an cineplex-----------\n");
+        int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size())-1;
+
+        Cineplex cineplex = cineplexList.get(cineplexIndex);
+
+        ArrayList<Cinema> cinemaList = cineplex.getCinema();
+        Cineplex_Controller.displayShowTimeOfCineplex(cineplex);
+
+        MovieGoerMainMenu.displayString("--------------Choose an cinema-----------\n");
+        int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size()) - 1;
+
+        Cinema cinema = cinemaList.get(cinemaIndex);
+
+        if(cinema.getShowTimeList().size()==0){
+            MovieGoerMainMenu.displayString("There is no show time to book in this cinema, try again\n");
+            booking();
+            return;
+        }
+
+        
+        ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
+        Cineplex_Controller.displayShowTimeOfCinema(cinema);
+
+        MovieGoerMainMenu.displayString("--------------Choose an showtime-----------\n");
+        int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size()) - 1;
+
+        ShowTime showTime = showTimeList.get(showTimeIndex);
+
+        Seat[][] seats = showTime.getSeats();
+        for(int j=0; j<seats[0].length; j++){
+            MovieGoerMainMenu.displayString(" "+  (j+1) + " ");
+        }
+        MovieGoerMainMenu.displayString("\n");
+
+        for(int i=0; i<seats.length; i++){
+            MovieGoerMainMenu.displayString((i+1) + " ");
+            for(int j=0; j<seats[0].length; j++){
+                MovieGoerMainMenu.displayString(seats[i][j].toString());
+            }
+            MovieGoerMainMenu.displayString("\n");
+        }
+
+        MovieGoerMainMenu.displayString("[ ]: Normal seat available          [X]: Normal seat taken\n");
+
+        MovieGoerMainMenu.load();
+    }
+
+
+
+
+
+
+
+
+
 
     /**
 	 * Booking method

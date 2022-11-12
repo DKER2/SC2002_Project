@@ -16,11 +16,12 @@ public class MovieGoerMainMenu {
 				"1. List movie \n" + 
                 "2. Search movie \n" +
                 "3. View Details of Movie \n"  +
-				"4. Book and purchase ticket\n" +
-                "5. View Booking History \n"+
-                "6. List Top 5 ranking by ticket sales OR by overall reviewers' ratings\n" +
-                "7. Add Reviews\n" +
-                "8. Go Back \n");
+                "4. Check seat availability and selection of seats \n" +
+				"5. Book and purchase ticket\n" +
+                "6. View Booking History \n"+
+                "7. List Top 5 ranking by ticket sales OR by overall reviewers' ratings\n" +
+                "8. Add Reviews\n" +
+                "9. Go Back \n");
 
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -36,18 +37,21 @@ public class MovieGoerMainMenu {
                 Movie_Controller.viewMovieDetails();
                 break;
             case 4:
-                MovieGoer_Controller.booking();
+                MovieGoer_Controller.showSeatAvailability();
                 break;
             case 5:
-                MovieGoer_Controller.viewHistoryBook();
+                MovieGoer_Controller.booking();
                 break;
             case 6:
-                Movie_Controller.listTopFiveMovie();
+                MovieGoer_Controller.viewHistoryBook();
                 break;
             case 7:
-                MovieGoer_Controller.addReviews();
+                Movie_Controller.listTopFiveMovie();
                 break;
             case 8:
+                MovieGoer_Controller.addReviews();
+                break;
+            case 9:
                 MainMenu.load();
                 break;
             default:
