@@ -66,7 +66,6 @@ public class Movie implements Serializable{
      * @param reviewList    list of reviews and ratings that the movie have
      * @param revenue
      */
-
     public Movie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.Censorship censorship, CONSTANTS.TypeOfMovie typeOfMovie, String synopsis, String director, ArrayList<String> actorList, int revenue, ArrayList<Review> review_list) {
         this.title = title;
         this.showingStatus = showingStatus;
@@ -176,7 +175,7 @@ public class Movie implements Serializable{
     }
 
     /**
-     * This method removes an actor from the actorList
+     * Removes an actor from the actorList
      * @param actor is the actor to remove.
      */
     public void removeActor(String actor) {
@@ -191,13 +190,17 @@ public class Movie implements Serializable{
     }
 
     /**
-     * This method returns the reviews of the movie
+     * Returns the reviews of the movie
      * @return the reviews of the movie
      */
     public ArrayList<Review> getReview_list() {
         return this.review_list;
     }
 
+    /**
+     * Returns the overall rating of the movie
+     * @return the overall rating score
+     */
     public Float getOverallRating(){
         ArrayList<Review> reviewList = getReview_list();
         Float averageScore = (float) 0.0;
@@ -209,30 +212,58 @@ public class Movie implements Serializable{
         return averageScore/reviewList.size();
     }
 
+    /**
+     * Increasre the revenue of the movie
+     * @param increaseAmount increase amount
+     */
     public void increaseRevenue(int increaseAmount){
         revenue = revenue + increaseAmount;
     }
 
+     /**
+     * Get censorship of Movie
+     * @return censorship of Movie
+     */
     public CONSTANTS.Censorship getCensorship() {
         return this.censorship;
     }
 
+    /**
+     * Set censorship of Movie
+     * @param censorship censorship of Movie
+     */
     public void setCensorship(CONSTANTS.Censorship censorship) {
         this.censorship = censorship;
     }
 
+    /**
+     * Get type of Movie
+     * @return type of Movie
+     */
     public CONSTANTS.TypeOfMovie getTypeOfMovie() {
         return this.typeOfMovie;
     }
 
+    /**
+     * Set type of Movie
+     * @param typeOfMovie type of Movie
+     */
     public void setTypeOfMovie(CONSTANTS.TypeOfMovie typeOfMovie) {
         this.typeOfMovie = typeOfMovie;
     }
 
+    /**
+     * add review into review list
+     * @param review new review
+     */
     public void addReview(Review review){
         review_list.add(review);
     }
 
+    /**
+     * Get revenue of Movie
+     * @return revenue of Movie
+     */
     public Integer getRevenue() {
         return this.revenue;
     }

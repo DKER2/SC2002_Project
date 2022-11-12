@@ -10,12 +10,19 @@ import src.Entity.Holiday;
 import src.utils.SerializeDB;
 
 public class Holiday_Controller {
+    /**
+     * data file location
+     */
     public final static String FILENAME = "././data/holidays.txt";
 
     public Holiday_Controller(){
 
     }
 
+    /**
+	 * get all Holidays 
+     * @return Array list of holiday
+	 */
     public static ArrayList<Holiday> getAllHolidays(){
         ArrayList<Holiday> cineplexList = new ArrayList<Holiday>();
         if(SerializeDB.readSerializedObject(FILENAME) == null){
@@ -25,6 +32,10 @@ public class Holiday_Controller {
         return cineplexList;
     }
 
+    /**
+	 * add Holidays 
+     * @return Array list of holiday
+	 */
     public static boolean addHoliday(String name, Date time){
         Holiday Holiday = new Holiday(time, name);
 
@@ -53,10 +64,17 @@ public class Holiday_Controller {
         return !exist;
     }
 
+    /**
+	 * Save Holidays 
+     * @return Array list of holiday
+	 */
     public static void saveHolidays(ArrayList<Holiday> holidays){
         SerializeDB.writeSerializedObject(FILENAME, holidays);
     }
 
+    /**
+	 * Configure Holday
+	 */
     public static void configureHolidays(){
         ArrayList<Holiday> holidayList = Holiday_Controller.getAllHolidays();
         System.out.println("Holiday List:");
@@ -145,7 +163,11 @@ public class Holiday_Controller {
                 break;
         }
     }
-
+    
+     /**
+	 * Check if a date is holiday or not
+     * @param date date to check
+	 */
     public static boolean isHoliday(Date date){
         boolean isHoliday = false;
         ArrayList<Holiday> holidayList = Holiday_Controller.getAllHolidays();

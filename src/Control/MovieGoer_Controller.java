@@ -18,6 +18,9 @@ import src.Entity.ShowTime;
 import src.utils.SerializeDB;
 
 public class MovieGoer_Controller {
+    /**
+     * data file location
+     */
     public final static String FILENAME = "././data/movieGoer.txt";
     final static int CHANGE_USERNAME = 1;
     final static int CHANGE_PASSWORD = 2;
@@ -27,6 +30,10 @@ public class MovieGoer_Controller {
 
     }
 
+    /**
+	 * Get all movie goers
+     * @return array list of moviegoer
+	 */
     public static ArrayList<MovieGoer> getAllMovieGoers(){
         ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
         if(SerializeDB.readSerializedObject(FILENAME) == null){
@@ -36,8 +43,18 @@ public class MovieGoer_Controller {
         return movieGoerList;
     }
 
-    public static boolean addMovieGoer(String username, String password, String name, String email, String phone, Integer age, ArrayList<Booking> bookingList){
-        MovieGoer movieGoer = new MovieGoer(username, password, name, email, phone, age, bookingList);
+    /**
+	 * Add new movie goer
+     * @param usernam
+     * @param password
+     * @param name
+     * @param email
+     * @param phone
+     * @param age
+     * @return flag indicate the success of add
+	 */
+    public static boolean addMovieGoer(String username, String password, String name, String email, String phone, Integer age){
+        MovieGoer movieGoer = new MovieGoer(username, password, name, email, phone, age);
 
         ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
 
@@ -63,6 +80,11 @@ public class MovieGoer_Controller {
         return !exist;
     }
 
+    /**
+	 * Sign In 
+     * @param Username
+     * @param Password
+	 */
     public static void signIn(String Username, String Password){
         ArrayList<MovieGoer> Data = new ArrayList<MovieGoer>();
 
@@ -87,9 +109,17 @@ public class MovieGoer_Controller {
 		}
     }
 
+    /**
+	 * Sign Up 
+     * @param username
+     * @param password
+     * @param name
+     * @param email
+     * @param phone
+     * @param age
+	 */
     public static void signUp(String username, String password, String name, String email, String phone, Integer age){
-        ArrayList<Booking> bookingList = new ArrayList<Booking>();
-        boolean status = addMovieGoer(username, password, name, email, phone, age, bookingList);
+        boolean status = addMovieGoer(username, password, name, email, phone, age);
 
 		if(status){
 			System.out.println("Sign Up Successfuly");
@@ -101,6 +131,9 @@ public class MovieGoer_Controller {
 		}
     }
 
+    /**
+	 * Booking method
+	 */
     public static void booking(){
         System.out.println("-----------------Booking-------------");
 
@@ -177,6 +210,9 @@ public class MovieGoer_Controller {
         }
     }
 
+    /**
+	 * View Booking History of User
+	 */
     public static void viewHistoryBook(){
         ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
 
@@ -198,6 +234,9 @@ public class MovieGoer_Controller {
         MovieGoerMainMenu.load();
     }
 
+    /**
+	 * Add Review to a movie
+	 */
     public static void addReviews(){
         Movie_Controller.addReviews(username);
         MovieGoerMainMenu.load();

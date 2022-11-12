@@ -20,12 +20,19 @@ import src.Boundary.AdminMenu.AdminMainMenu;
 import src.Entity.CONSTANTS;
 
 public class Cineplex_Controller {
+    /**
+     * data file location
+     */
     public final static String FILENAME = "././data/cineplex.txt";
 
     public Cineplex_Controller(){
 
     }
-
+    
+    /**
+	 * Get all cineplex 
+     * @return array list of cineplex
+	 */
     public static ArrayList<Cineplex> getAllCineplexs(){
         ArrayList<Cineplex> cineplexList = new ArrayList<Cineplex>();
         if(SerializeDB.readSerializedObject(FILENAME) == null){
@@ -35,6 +42,11 @@ public class Cineplex_Controller {
         return cineplexList;
     }
 
+    /**
+	 * Add cineplex 
+     * @param cineplexName cineplex name 
+     * @param cinemaList list of cinema
+	 */
     public static boolean addCineplex(String cineplexName,ArrayList<Cinema> cinemasList){
         Cineplex cineplex = new Cineplex(cineplexName, cinemasList);
 
@@ -63,10 +75,17 @@ public class Cineplex_Controller {
         return !exist;
     }
 
+    /**
+	 * Save new cineplexList
+     * @param cineplexList new list of Cineplex
+	 */
     public static void save(ArrayList<Cineplex> cineplexList){
         SerializeDB.writeSerializedObject(FILENAME, cineplexList);
     }
 
+    /**
+	 * Display all showtime of all cineplex
+	 */
     public static void displayShowTimeOfAllCineplex(){
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -77,6 +96,9 @@ public class Cineplex_Controller {
         }
     }
 
+    /**
+	 * Display all showtime of a cineplex
+	 */
     public static void displayShowTimeOfCineplex(Cineplex cineplex){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -88,6 +110,9 @@ public class Cineplex_Controller {
         }
     }
 
+    /**
+	 * Display all showtime of a cinema
+	 */
     public static void displayShowTimeOfCinema(Cinema cinema){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -124,6 +149,9 @@ public class Cineplex_Controller {
         System.out.print("\n");
     }
 
+    /**
+	 * Create new showtime
+	 */
     public static void createShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
@@ -164,6 +192,9 @@ public class Cineplex_Controller {
         SerializeDB.writeSerializedObject(FILENAME, cineplexList);
     }
 
+    /**
+	 * Update showtime
+	 */
     public static void updateShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
@@ -233,6 +264,9 @@ public class Cineplex_Controller {
         }
     }
 
+    /**
+	 * Remove showtime
+	 */
     public static void removeShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
@@ -267,6 +301,9 @@ public class Cineplex_Controller {
         AdminMainMenu.load();
     }
 
+    /**
+	 * Create/Update/Remove showtime
+	 */
     public static void createUpdateShowTime(){
         Cineplex_Controller.displayShowTimeOfAllCineplex();
 

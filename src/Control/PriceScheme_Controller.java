@@ -14,8 +14,15 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 public class PriceScheme_Controller {
+    /**
+     * data file location
+     */
     private static final String FILENAME = "././data/price.txt";
 
+    /**
+     * Get all Price Scheme
+     * @return A Hash Map between String and Price
+     */
     public static ArrayList<HashMap<String, Float>> getAllPriceScheme(){
         ArrayList<HashMap<String, Float>> priceSchemaList = new ArrayList<HashMap<String, Float>>();
         if(SerializeDB.readSerializedObject(FILENAME) == null){
@@ -25,6 +32,9 @@ public class PriceScheme_Controller {
         return priceSchemaList;
     }
 
+    /**
+     * Configure Price
+     */
     public static void configurePrice(){
         ArrayList<HashMap<String, Float>> priceSchemaList = new ArrayList<HashMap<String, Float>>();
         priceSchemaList = getAllPriceScheme();
@@ -57,8 +67,11 @@ public class PriceScheme_Controller {
         System.out.println("Update Price Successfully");
 
         AdminMainMenu.load();
-    }   
+    }  
 
+    /**
+     * Caculate price
+     */
     public static Float caculatePrice(CONSTANTS.ClassOfCinema classOfCinema, CONSTANTS.TypeOfMovie typeOfMovie, int age, Date showTime){
         ArrayList<HashMap<String, Float>> priceSchemaList = new ArrayList<HashMap<String, Float>>();
         priceSchemaList = getAllPriceScheme();

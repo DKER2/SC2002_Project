@@ -52,6 +52,11 @@ public class Seat implements Serializable{
         return seatStatus;
     }
 
+    /**
+     * Book Seat 
+     * @param owner the booking person
+     * @return flag indicate booking is successful
+     */
     public boolean bookSeat(String owner){
         if(seatStatus.equals(CONSTANTS.seatStatus.TAKEN)){
             System.out.println("The seat have been occupied, sorry");
@@ -62,6 +67,9 @@ public class Seat implements Serializable{
         return true;
     }
 
+    /**
+     * Free Seat 
+     */
     public void freeSeat(){
         seatStatus = CONSTANTS.seatStatus.NOTTAKEN;
     }
@@ -85,6 +93,10 @@ public class Seat implements Serializable{
         return seatID;
     }
 
+    /**
+     * Gets Owner
+     * @return String value of owner
+     */
     public String getOwner() {
         if(seatStatus.equals(CONSTANTS.seatStatus.TAKEN)){
             return owner;

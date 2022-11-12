@@ -5,6 +5,9 @@ import java.util.Scanner;
 import src.Control.MovieGoer_Controller;
 
 public class MovieGoerSignUp {
+	/**
+     * Movie Goer Sign Up Menu
+     */
     public static void load() {
         System.out.println("-------------------Signing Up Account-----------------");
 		Scanner sc = new Scanner(System.in);

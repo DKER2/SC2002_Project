@@ -5,6 +5,9 @@ import java.util.Scanner;
 import src.Control.Admin_Controller;
 
 public class AdminLogin {
+	/**
+     * Admin Login menu
+     */
     public static void load() {
 		System.out.println("----------------Logging In Account--------------");
 		Scanner sc = new Scanner(System.in);

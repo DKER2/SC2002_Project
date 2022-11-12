@@ -6,26 +6,32 @@ import java.text.SimpleDateFormat;
 
 public class ShowTime implements Serializable{
     private static final long serialVersionUID = 8L;
+
     /**
      * Movie object with information on Movie
      */
     private Movie movie; //object with information on the movie
+
     /**
      * Cinema object where movie is screened
      */
     private Cinema cinema; //cinema where is the movie showing
+
     /**
      * Cineplex object where cinema belongs
      */
     private Cineplex cineplex; //cineplex where is the movie showing
+
     /**
      * Date object for showtime
      */
     private Date showTime; //show time of the movie
+
     /**
      * Available seats;
      */
     private Seat[][] seats;
+
     /**
      * Constructor for MovieShowing object
      * @param movie Movie Object
@@ -45,6 +51,7 @@ public class ShowTime implements Serializable{
             }
         }
     }
+
     /**
      * Generate String with information on Movie Showtime
      * @return String with information on showtime
@@ -92,16 +99,22 @@ public class ShowTime implements Serializable{
     
     /**
      * Generates String with Cinema Code
-     *
      */
     public String toString() {
     	return "Cinema Code: " + cinema.getCinemaCode();
     }
 
+    /**
+     * Set the movie to new movie
+     * @param newMovie new movie
+     */
     public void setMovie(Movie newMovie) {
         movie = newMovie;
     }
 
+    /**
+     * Generates String of seat
+     */
     public void displaySeat(){
         for(int j=0; j<seats[0].length; j++){
             System.out.print(" "+  (j+1) + " ");
@@ -117,14 +130,25 @@ public class ShowTime implements Serializable{
         }
     }
 
+    /**
+     * Book seat
+     */
     public boolean bookSeat(int col, int row, String username){
         return seats[row][col].bookSeat(username);
     }
 
+    /**
+     * Get the height of seat layout
+     * @return height of seat layout
+     */
     public int getHeightOfSeat(){
         return seats.length;
     }
 
+    /**
+     * Get the width of seat layout
+     * @return width of seat layout
+     */
     public int getWidthOfSeat(){
         return seats[0].length;
     }

@@ -11,6 +11,9 @@ import src.Entity.CONSTANTS;
 import src.Entity.Movie;
 
 public class AdminMainMenu {
+    /**
+     * Admin Main menu
+     */
     public static void load() {
         System.out.println("------------Admin----------");
 		System.out.println("Choose from one of the following options: \n" +

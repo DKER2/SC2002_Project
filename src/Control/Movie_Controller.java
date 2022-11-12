@@ -15,6 +15,9 @@ import src.Boundary.MovieGoerMenu.MovieGoerMainMenu;
 import src.utils.SerializeDB;
 
 public class Movie_Controller {
+    /**
+     * data file location
+     */
     public final static String FILENAME = "././data/movie.txt";
     final static int CHANGE_TITLE = 1;
     final static int CHANGE_SYSNOPSIS = 2;
@@ -22,6 +25,10 @@ public class Movie_Controller {
     final static int CHANGE_ACTOR = 4;
     final static int CHANGE_SHOWINGSTATUS = 5;
 
+    /**
+     * Get all movies
+     * @return Array list of movie
+     */
     public static ArrayList<Movie> getAllMovies(){
         ArrayList<Movie> MovieList = new ArrayList<Movie>();
         if(SerializeDB.readSerializedObject(FILENAME) == null){
@@ -31,6 +38,10 @@ public class Movie_Controller {
         return MovieList;
     }
 
+    /**
+     * Get all showing movies
+     * @return Array list of showing movie
+     */
     public static ArrayList<Movie> getAllShowingMovies(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
@@ -46,6 +57,17 @@ public class Movie_Controller {
         return showingMovieList;
     }
 
+    /**
+     * Add movies
+     * @param titile
+     * @param showingStatus
+     * @param censorship
+     * @param typeOfMovie
+     * @param sysnopsis
+     * @param director
+     * @param actorList
+     * @return flag indicate the success 
+     */
     public static boolean addMovie(String title, CONSTANTS.ShowingStatus showingStatus, CONSTANTS.Censorship censorship, CONSTANTS.TypeOfMovie typeOfMovie, String sysnopsis, String director, ArrayList<String> actorList){
         ArrayList<Review> review_list = new ArrayList<Review>();
         Movie Movie = new Movie(title, showingStatus, censorship, typeOfMovie, sysnopsis, director, actorList, 0, review_list);
@@ -78,10 +100,17 @@ public class Movie_Controller {
         return !exist;
     }
 
+    /**
+	 * Save new movieList
+     * @param movieList new list of Movie
+	 */
     public static void save(ArrayList<Movie> movieList){
         SerializeDB.writeSerializedObject(FILENAME, movieList);
     }
 
+    /**
+	 * Create movie
+	 */
     public static void createMovie(){
         String title = AdminMainMenu.getTitleFromTerminal();
         String sysnopsis = AdminMainMenu.getSynopsisFromTerminal();
@@ -93,6 +122,9 @@ public class Movie_Controller {
         Movie_Controller.addMovie(title, showingStatus, censorship, typeOfMovie, sysnopsis, director, actorList);
     }
     
+    /**
+	 * Update movie
+	 */
     public static void updateMovie() {
         ArrayList<Movie> movieList = getAllMovies();
 
@@ -143,6 +175,9 @@ public class Movie_Controller {
         AdminMainMenu.load();
     }
 
+    /**
+	 * Remove movie
+	 */
     public static void removeMovie() {
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -162,6 +197,9 @@ public class Movie_Controller {
         AdminMainMenu.load();
     }
 
+    /**
+	 * Increase the revenue of movie
+	 */
     public static void increaseRevenue(Movie movie){
         ArrayList<Movie> MovieList = new ArrayList<Movie>();
 
@@ -184,6 +222,9 @@ public class Movie_Controller {
         SerializeDB.writeSerializedObject(FILENAME, MovieList);
     }
 
+    /**
+	 * Add Review
+	 */
     public static void addReviews(String username){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
         Scanner sc = new Scanner(System.in);
@@ -220,6 +261,9 @@ public class Movie_Controller {
         SerializeDB.writeSerializedObject(FILENAME, movieList);
     }
 
+    /**
+	 * View Movie Details
+	 */
     public static void viewMovieDetails(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -258,6 +302,9 @@ public class Movie_Controller {
         MovieGoerMainMenu.load();
     }
 
+    /**
+	 * List all movie
+	 */
     public static void listAllMovie(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -278,6 +325,9 @@ public class Movie_Controller {
         MovieGoerMainMenu.load();
     }
 
+    /**
+	 * Search movie
+	 */
     public static void searchMovie(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -329,6 +379,9 @@ public class Movie_Controller {
         MovieGoerMainMenu.load();
     }
 
+    /**
+	 * List top five movie
+	 */
     public static void listTopFiveMovie(){
         System.out.println("Top Five Movie According to");
         System.out.println("1. Review \n" +
@@ -353,6 +406,9 @@ public class Movie_Controller {
         
     }
 
+    /**
+	 * List top five movie by review
+	 */
     public static void listTopFiveMovieByReview(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -368,6 +424,9 @@ public class Movie_Controller {
         }
     }
 
+    /**
+	 * List top five movie by sale
+	 */
     public static void listTopFiveMovieBySale(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -383,6 +442,9 @@ public class Movie_Controller {
         }
     }
 
+    /**
+	 * Create/Update/Remove Movie
+	 */
     public static void createUpdateMovie(){
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------Create/Update/Remove Movie-----------");

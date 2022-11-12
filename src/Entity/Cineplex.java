@@ -6,10 +6,12 @@ import java.util.ArrayList;
 public class Cineplex implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Cineplex Name
 	 */
 	private String cineplexName;
+
 	/**
 	 * ArrayList of Cinemas
 	 */
@@ -53,8 +55,8 @@ public class Cineplex implements Serializable{
 	}
 
 	/**
-	 * Sets cineplex name
-	 * @param name New cineplex name
+	 * Sets ciname list
+	 * @param newCinemas New cinema list
 	 */
 	public void setCinemaList(ArrayList<Cinema> newCinemas) 
 	{
@@ -80,7 +82,7 @@ public class Cineplex implements Serializable{
 	 * Update show time of a cinema in a cineplex
 	 * @param cinemaCode cinemaCode to add showtime
 	 * @param showTime show time to add
-	 * @param showTimeIndex
+	 * @param showTimeIndex showtime index to update
 	 */
 	public void updateShowTime(String cinemaCode, ShowTime newShowTime, int showTimeIndex){
 		for(int i=0; i<cinemas.size(); i++){
@@ -95,7 +97,7 @@ public class Cineplex implements Serializable{
 	/**
 	 * Remove show time of a cinema in a cineplex
 	 * @param cinemaCode cinemaCode to remove showtime
-	 * @param showTimeIndex
+	 * @param showTimeIndex showtime index to remove
 	 */
 	public void removeShowTime(String cinemaCode, int showTimeIndex){
 		for(int i=0; i<cinemas.size(); i++){
@@ -108,9 +110,12 @@ public class Cineplex implements Serializable{
 	}
 
 	/**
-	 * Remove show time of a cinema in a cineplex
-	 * @param cinemaCode cinemaCode to remove showtime
-	 * @param showTimeIndex
+	 * Book a seat
+	 * @param cinemaCode cinema code used to indicate what cinema the booking is for
+	 * @param showTimeIndex showtime index to remove
+	 * @param colIndex col index of seat
+	 * @param rowIndex row index of seat
+	 * @param username who book the seat
 	 */
 	public boolean bookSeat(String cinemaCode, int showTimeIndex, int colIndex, int rowIndex, String username){
 		for(int i=0; i<cinemas.size(); i++){

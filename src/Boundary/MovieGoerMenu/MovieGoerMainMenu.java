@@ -7,6 +7,9 @@ import src.Control.MovieGoer_Controller;
 import src.Control.Movie_Controller;
 
 public class MovieGoerMainMenu {
+    /**
+     * Movie Goer menu
+     */
     public static void load() {
         System.out.println("-------------Movie Goer------------");
 		System.out.println("Choose from one of the following options: \n" +
