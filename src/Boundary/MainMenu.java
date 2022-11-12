@@ -42,7 +42,7 @@ public class MainMenu {
 				break;
 			default:
 				System.out.println("Invalid selection, please try again.");
-                load();
+                		load();
 		}
 	}
 }
