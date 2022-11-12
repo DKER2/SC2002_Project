@@ -242,12 +242,12 @@ public class Cineplex_Controller {
                 break;
             case 2:
                 AdminMainMenu.displayString("Type in Date\n");
-                SimpleDateFormat formatter1=new SimpleDateFormat("dd/mm/yyyy");  
+                SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy HH:mm");  
                 Date time = new Date();
                 try{
                     time = formatter1.parse(AdminMainMenu.getString());
                 }catch(Exception ex){
-                    AdminMainMenu.displayString("Please Follow Datetime format dd/MM/YYYY\n");
+                    AdminMainMenu.displayString("Please Follow Datetime format dd/MM/YYYY HH:mm\n");
                     createShowTime();
                 }
                 showTime.setShowTime(time);
