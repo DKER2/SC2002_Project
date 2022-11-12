@@ -89,7 +89,7 @@ public class PriceScheme_Controller {
             price  = priceMap.get(key);
         }
          else{
-            key = String.format("%s CINEMA && %s MOVIE && (AGE >= 18 && AGE < 60) ", classOfCinema.name(), typeOfMovie.name());
+            key = String.format("%s CINEMA && %s MOVIE && (AGE >= 18 && AGE < 60)", classOfCinema.name(), typeOfMovie.name());
             price  = priceMap.get(key);
         } 
 
