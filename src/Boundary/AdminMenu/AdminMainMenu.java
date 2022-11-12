@@ -241,4 +241,8 @@ public class AdminMainMenu {
         String searchString = sc.nextLine();
         return searchString;
     }
+
+    public static void displayString(String string){
+        System.out.print(string);
+    }
 }

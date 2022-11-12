@@ -113,24 +113,6 @@ public class ShowTime implements Serializable{
     }
 
     /**
-     * Generates String of seat
-     */
-    public void displaySeat(){
-        for(int j=0; j<seats[0].length; j++){
-            System.out.print(" "+  (j+1) + " ");
-        }
-        System.out.print("\n");
-
-        for(int i=0; i<seats.length; i++){
-            System.out.print((i+1) + " ");
-            for(int j=0; j<seats[0].length; j++){
-                System.out.print(seats[i][j].toString());
-            }
-            System.out.print("\n");
-        }
-    }
-
-    /**
      * Book seat
      */
     public boolean bookSeat(int col, int row, String username){
@@ -151,5 +133,13 @@ public class ShowTime implements Serializable{
      */
     public int getWidthOfSeat(){
         return seats[0].length;
+    }
+
+    /**
+     * Gets Seat layout
+     * @return seats object for this showtime
+     */
+    public Seat[][] getSeats(){ //returns which cinema the movie is showing
+        return seats;
     }
 }

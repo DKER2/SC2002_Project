@@ -93,7 +93,7 @@ public class Movie_Controller {
             SerializeDB.writeSerializedObject(FILENAME, MovieList);
         }
 
-        System.out.println("The movie has been added!\n");
+        AdminMainMenu.displayString("The movie has been added!\n");
 
         AdminMainMenu.load();
 
@@ -129,7 +129,7 @@ public class Movie_Controller {
         ArrayList<Movie> movieList = getAllMovies();
 
         if (movieList == null || movieList.size() == 0) {
-            System.out.println("\nThere is no movie to remove!\n");
+            AdminMainMenu.displayString("\nThere is no movie to remove!\n");
             return;
         }
         
@@ -164,13 +164,13 @@ public class Movie_Controller {
                 movieList.get(changIndexMovie).setTypeOfMovie((CONSTANTS.TypeOfMovie) newData);
                 break; 
             default:
-                System.out.println("Invalid Choice");
+                AdminMainMenu.displayString("Invalid Choice\n");
                 break;
         }
 
         SerializeDB.writeSerializedObject(FILENAME, movieList);
 
-        System.out.println("The movie has been updated!\n");
+        AdminMainMenu.displayString("The movie has been updated!\n");
 
         AdminMainMenu.load();
     }
@@ -184,7 +184,7 @@ public class Movie_Controller {
         int deleteMovieIndex = AdminMainMenu.getMovieIndexFromTerminal();
         
         if (movieList == null || movieList.size() == 0) {
-            System.out.println("\nThere is no movie to remove!\n");
+            AdminMainMenu.displayString("\nThere is no movie to remove!\n");
             return;
         }
         
@@ -192,7 +192,7 @@ public class Movie_Controller {
 
         SerializeDB.writeSerializedObject(FILENAME, movieList);
 
-        System.out.println("The movie has been removed!\n");
+        AdminMainMenu.displayString("The movie has been removed!\n");
 
         AdminMainMenu.load();
     }
@@ -229,21 +229,20 @@ public class Movie_Controller {
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println();
-        System.out.println("Movie list:");
+        MovieGoerMainMenu.displayString("Movie list:\n");
         
         for (int i = 0; i < movieList.size(); i++) {
-            System.out.println((i + 1 ) + ". " + movieList.get(i).getTitle());
+            MovieGoerMainMenu.displayString((i + 1 ) + ". " + movieList.get(i).getTitle() + "\n");
         }
         
         int movieIndex = MovieGoerMainMenu.getChoice(movieList.size()) - 1;
         
         Movie movie = movieList.get(movieIndex); 
 
-        System.out.println("Type in review statement");
+        MovieGoerMainMenu.displayString("Type in review statement \n");
         String statement = sc.nextLine();
 
-        System.out.println("Type in your rating [1-5]");
+        MovieGoerMainMenu.displayString("Type in your rating [1-5] \n");
         int rating = sc.nextInt();
 
         ArrayList<MovieGoer> movieGoerList = new ArrayList<MovieGoer>();
@@ -267,8 +266,7 @@ public class Movie_Controller {
     public static void viewMovieDetails(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
-        System.out.println();
-        System.out.println("Movie list:");
+        MovieGoerMainMenu.displayString("Movie list:\n");
         
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
 
@@ -279,25 +277,24 @@ public class Movie_Controller {
         }
 
         for (int i = 0; i < showingMovieList.size(); i++) {
-            System.out.println((i+1) + "." + showingMovieList.get(i).getTitle());
+            MovieGoerMainMenu.displayString((i+1) + "." + showingMovieList.get(i).getTitle() + "\n");
         }
 
         int choice = MovieGoerMainMenu.getChoice(showingMovieList.size() + 1);
 
         Movie movie = showingMovieList.get(choice - 1);
-        System.out.println();
-        System.out.println("Title: " + movie.getTitle());
-        System.out.println("Type of movie: " + movie.getTypeOfMovie());
-        System.out.println("Synopsis: " + movie.getSynopsis());
-        System.out.println("Director: " + movie.getDirector());
-        System.out.println("Actors:" );
+
+        MovieGoerMainMenu.displayString("Title: " + movie.getTitle() + "\n");
+        MovieGoerMainMenu.displayString("Type of movie: " + movie.getTypeOfMovie() + "\n");
+        MovieGoerMainMenu.displayString("Synopsis: " + movie.getSynopsis() + "\n");
+        MovieGoerMainMenu.displayString("Director: " + movie.getDirector() + "\n");
+        MovieGoerMainMenu.displayString("Actors:" + "\n");
         for (int i = 0; i < movie.getActorList().size(); i++) {
-            System.out.println(" *" + movie.getActorList().get(i));
+            MovieGoerMainMenu.displayString(" *" + movie.getActorList().get(i) +"\n");
         }
-        System.out.println("Showing status: " + movie.getShowingStatus());
-        System.out.println("Overall rating: " + movie.getOverallRating());
-        System.out.println("Rating: " + movie.getCensorship().name());
-        System.out.println();
+        MovieGoerMainMenu.displayString("Showing status: " + movie.getShowingStatus() + "\n");
+        MovieGoerMainMenu.displayString("Overall rating: " + movie.getOverallRating() + "\n");
+        MovieGoerMainMenu.displayString("Rating: " + movie.getCensorship().name() + "\n");
 
         MovieGoerMainMenu.load();
     }
@@ -308,7 +305,7 @@ public class Movie_Controller {
     public static void listAllMovie(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
-        System.out.println("--------------Movie list------------");
+        MovieGoerMainMenu.displayString("--------------Movie list------------\n");
         
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
         
@@ -319,7 +316,7 @@ public class Movie_Controller {
         }
 
         for (int i = 0; i < showingMovieList.size(); i++) {
-            System.out.println((i+1) + "." + showingMovieList.get(i).getTitle());
+            MovieGoerMainMenu.displayString((i+1) + "." + showingMovieList.get(i).getTitle() + "\n");
         }
 
         MovieGoerMainMenu.load();
@@ -342,37 +339,35 @@ public class Movie_Controller {
         }
 
         if(searchResults.size()==0){
-            System.out.println("Do not find a movie with " + searchString);
+            MovieGoerMainMenu.displayString("Do not find a movie with " + searchString + "\n");
         }
         else{
-            System.out.println("--------------------Possible Movie---------------");
+            MovieGoerMainMenu.displayString("--------------------Possible Movie--------------- \n");
             for(int i=0; i<searchResults.size(); i++){
-                System.out.println((i+1) + "." + searchResults.get(i).getTitle());
+                MovieGoerMainMenu.displayString((i+1) + "." + searchResults.get(i).getTitle() + "\n");
             }
-            System.out.println((searchResults.size()+1) + "." + "Go Back");
+            MovieGoerMainMenu.displayString((searchResults.size()+1) + "." + "Go Back" + "\n");
 
-            System.out.println("Please choose an Movie to view details, otherwise choose last number to go back");
+            MovieGoerMainMenu.displayString("Please choose an Movie to view details, otherwise choose last number to go back \n");
             int choice = MovieGoerMainMenu.getChoice(searchResults.size()+1);
 
             if(choice==searchResults.size()+1){
                 MovieGoerMainMenu.load();
             }
             else{
-                System.out.println("-----------Details-----------");
+                MovieGoerMainMenu.displayString("-----------Details----------- \n");
                 Movie movie = searchResults.get(choice-1);
-                System.out.println();
-                System.out.println("Title: " + movie.getTitle());
-                System.out.println("Type of movie: " + movie.getTypeOfMovie());
-                System.out.println("Synopsis: " + movie.getSynopsis());
-                System.out.println("Director: " + movie.getDirector());
-                System.out.println("Actors:" );
+                MovieGoerMainMenu.displayString("Title: " + movie.getTitle() + "\n");
+                MovieGoerMainMenu.displayString("Type of movie: " + movie.getTypeOfMovie() + "\n");
+                MovieGoerMainMenu.displayString("Synopsis: " + movie.getSynopsis() + "\n");
+                MovieGoerMainMenu.displayString("Director: " + movie.getDirector() + "\n");
+                MovieGoerMainMenu.displayString("Actors: \n" );
                 for (int i = 0; i < movie.getActorList().size(); i++) {
-                    System.out.println(" *" + movie.getActorList().get(i));
+                    MovieGoerMainMenu.displayString(" *" + movie.getActorList().get(i) + "\n");
                 }
-                System.out.println("Showing status: " + movie.getShowingStatus());
-                System.out.println("Overall rating: " + movie.getOverallRating());
-                System.out.println("Rating: " + movie.getCensorship().name());
-                System.out.println();
+                MovieGoerMainMenu.displayString("Showing status: " + movie.getShowingStatus() +"\n");
+                MovieGoerMainMenu.displayString("Overall rating: " + movie.getOverallRating() + "\n");
+                MovieGoerMainMenu.displayString("Rating: " + movie.getCensorship().name() + "\n");
             }
         }
 
@@ -383,10 +378,10 @@ public class Movie_Controller {
 	 * List top five movie
 	 */
     public static void listTopFiveMovie(){
-        System.out.println("Top Five Movie According to");
-        System.out.println("1. Review \n" +
+        MovieGoerMainMenu.displayString("Top Five Movie According to \n");
+        MovieGoerMainMenu.displayString("1. Review \n" +
         "2. Sale \n" +
-        "3. Go Back ");
+        "3. Go Back \n");
 
         int choice = MovieGoerMainMenu.getChoice(3);
 
@@ -418,9 +413,9 @@ public class Movie_Controller {
             }
         });
 
-        System.out.println("----------Top 5 Movie By Review-----------");
+        MovieGoerMainMenu.displayString("----------Top 5 Movie By Review----------- \n");
         for(int i=0; i<5 && i<movieList.size(); i++){
-            System.out.println((i+1) + "." + movieList.get(i).getTitle());
+            MovieGoerMainMenu.displayString((i+1) + "." + movieList.get(i).getTitle() + "\n");
         }
     }
 
@@ -436,9 +431,9 @@ public class Movie_Controller {
             }
         });
 
-        System.out.println("----------Top 5 Movie By Sale-----------");
+        MovieGoerMainMenu.displayString("----------Top 5 Movie By Sale-----------\n");
         for(int i=0; i<5 && i<movieList.size(); i++){
-            System.out.println((i+1) + "." + movieList.get(i).getTitle() + "|" + " Total Sale: " + movieList.get(i).getRevenue());
+            MovieGoerMainMenu.displayString((i+1) + "." + movieList.get(i).getTitle() + "|" + " Total Sale: " + movieList.get(i).getRevenue()+"\n");
         }
     }
 
@@ -447,8 +442,8 @@ public class Movie_Controller {
 	 */
     public static void createUpdateMovie(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("-----------Create/Update/Remove Movie-----------");
-        System.out.println("Choose from one of the following options: \n" +
+        AdminMainMenu.displayString("-----------Create/Update/Remove Movie-----------\n");
+        AdminMainMenu.displayString("Choose from one of the following options: \n" +
                 "1. Create \n" + 
                 "2. Update \n" +
                 "3. Remove \n"+

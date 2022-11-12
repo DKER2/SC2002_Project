@@ -76,4 +76,8 @@ public class MovieGoerMainMenu {
         }
         return choice;
     }
+
+    public static void displayString(String string){
+        System.out.print(string);
+    }
 }

@@ -14,6 +14,7 @@ import src.Entity.Cinema;
 import src.Entity.Cineplex;
 import src.Entity.Movie;
 import src.Entity.MovieGoer;
+import src.Entity.Seat;
 import src.Entity.ShowTime;
 import src.utils.SerializeDB;
 
@@ -99,12 +100,12 @@ public class MovieGoer_Controller {
         }
         
         if(exist){
-			System.out.println("Login Successfuly");
+			MovieGoerMainMenu.displayString("Login Successfuly \n");
             MovieGoer_Controller.username = Username;
 			MovieGoerMainMenu.load();
 		}
 		else{
-			System.out.println("Login Fail");
+			MovieGoerMainMenu.displayString("Login Fail\n");
 			MainMenu.load();
 		}
     }
@@ -122,11 +123,11 @@ public class MovieGoer_Controller {
         boolean status = addMovieGoer(username, password, name, email, phone, age);
 
 		if(status){
-			System.out.println("Sign Up Successfuly");
+			MovieGoerMainMenu.displayString("Sign Up Successfuly\n");
 			MovieGoerMainMenu.load();
 		}
 		else{
-			System.out.println("MovieGoer Existed");
+			MovieGoerMainMenu.displayString("MovieGoer Existed\n");
             MainMenu.load();
 		}
     }
@@ -135,51 +136,63 @@ public class MovieGoer_Controller {
 	 * Booking method
 	 */
     public static void booking(){
-        System.out.println("-----------------Booking-------------");
+        MovieGoerMainMenu.displayString("-----------------Booking-------------\n");
 
         ArrayList<Cineplex> cineplexList = Cineplex_Controller.getAllCineplexs();
 
         Cineplex_Controller.displayShowTimeOfAllCineplex();
 
-        System.out.println("--------------Choose an cineplex-----------");
+        MovieGoerMainMenu.displayString("--------------Choose an cineplex-----------\n");
         int cineplexIndex = MovieGoerMainMenu.getChoice(cineplexList.size())-1;
 
         Cineplex cineplex = cineplexList.get(cineplexIndex);
 
-        System.out.println("-----------------Booking-------------");
+        MovieGoerMainMenu.displayString("-----------------Booking-------------\n");
 
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
         Cineplex_Controller.displayShowTimeOfCineplex(cineplex);
 
-        System.out.println("--------------Choose an cinema-----------");
+        MovieGoerMainMenu.displayString("--------------Choose an cinema-----------\n");
         int cinemaIndex = MovieGoerMainMenu.getChoice(cinemaList.size()) - 1;
 
         Cinema cinema = cinemaList.get(cinemaIndex);
 
         if(cinema.getShowTimeList().size()==0){
-            System.out.println("There is no show time to book in this cinema, try again");
+            MovieGoerMainMenu.displayString("There is no show time to book in this cinema, try again\n");
             booking();
             return;
         }
 
-        System.out.println("-----------------Booking-------------");
+        MovieGoerMainMenu.displayString("-----------------Booking-------------\n");
         
         ArrayList<ShowTime>  showTimeList = cinema.getShowTimeList();
         Cineplex_Controller.displayShowTimeOfCinema(cinema);
 
-        System.out.println("--------------Choose an showtime-----------");
+        MovieGoerMainMenu.displayString("--------------Choose an showtime-----------\n");
         int showTimeIndex = MovieGoerMainMenu.getChoice(showTimeList.size()) - 1;
 
         ShowTime showTime = showTimeList.get(showTimeIndex);
 
-        showTime.displaySeat();
+        Seat[][] seats = showTime.getSeats();
+        for(int j=0; j<seats[0].length; j++){
+            MovieGoerMainMenu.displayString(" "+  (j+1) + " ");
+        }
+        MovieGoerMainMenu.displayString("\n");
 
-        System.out.println("[ ]: Normal seat available          [X]: Normal seat taken");
+        for(int i=0; i<seats.length; i++){
+            MovieGoerMainMenu.displayString((i+1) + " ");
+            for(int j=0; j<seats[0].length; j++){
+                MovieGoerMainMenu.displayString(seats[i][j].toString());
+            }
+            MovieGoerMainMenu.displayString("\n");
+        }
 
-        System.out.println("Type in the column of seat you want:");
+        MovieGoerMainMenu.displayString("[ ]: Normal seat available          [X]: Normal seat taken\n");
+
+        MovieGoerMainMenu.displayString("Type in the column of seat you want:\n");
         int colIndex = MovieGoerMainMenu.getChoice(showTime.getWidthOfSeat()) - 1;
 
-        System.out.println("Type in the row of seat you want:");
+        MovieGoerMainMenu.displayString("Type in the row of seat you want:\n");
         int rowIndex = MovieGoerMainMenu.getChoice(showTime.getHeightOfSeat()) - 1;
 
         if(cineplex.bookSeat(cinema.getCinemaCode(), showTimeIndex, colIndex, rowIndex, MovieGoer_Controller.username)){
@@ -190,14 +203,14 @@ public class MovieGoer_Controller {
             for(int i=0; i<movieGoerList.size(); i++){
                 if(movieGoerList.get(i).getUsername().equals(MovieGoer_Controller.username)){
                     Float price = PriceScheme_Controller.caculatePrice(cinema.getClassOfCinema(), showTime.getMovie().getTypeOfMovie(), movieGoerList.get(i).getAge(), showTime.getShowTime());
-                    System.out.println("Your ticket price is " + price);
-                    System.out.println("Press enter to confirm booking");
+                    MovieGoerMainMenu.displayString("Your ticket price is " + price + "\n");
+                    MovieGoerMainMenu.displayString("Press enter to confirm booking \n");
                     Scanner sc = new Scanner(System.in);
                     sc.nextLine();
                     Booking newBooking =  new Booking(colIndex+1, rowIndex+1, price, showTime.getMovie(), cinema, cineplex);
                     movieGoerList.get(i).booking(newBooking);
                     Movie_Controller.increaseRevenue(newBooking.getMovie());
-                    System.out.println("Booking Succesfully");
+                    MovieGoerMainMenu.displayString("Booking Succesfully\n");
                 }
             }
 
@@ -223,11 +236,11 @@ public class MovieGoer_Controller {
                 MovieGoer movieGoer = movieGoerList.get(i);
                 ArrayList<Booking> bookingList = movieGoer.getBookingList();
                 for(int j=0; j<bookingList.size(); j++){
-                    System.out.println("Title: " + bookingList.get(j).getMovie().getTitle() + "|" +
+                    MovieGoerMainMenu.displayString("Title: " + bookingList.get(j).getMovie().getTitle() + "|" +
                     "Seat: " + bookingList.get(j).getSeatColumn() + " " + bookingList.get(j).getSeatRow() + "|" +
                     "Cinema: " + bookingList.get(j).getCinema().getCinemaCode() + "|" +
                     "Cineplex: " + bookingList.get(j).getCineplex().getCineplexName() + "|" +
-                    "TransactionId: " + bookingList.get(j).getTransactionId());
+                    "TransactionId: " + bookingList.get(j).getTransactionId() + "\n");
                 }
             }
         }

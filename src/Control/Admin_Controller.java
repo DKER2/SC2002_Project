@@ -139,11 +139,11 @@ public class Admin_Controller {
         }
         
         if(exist){
-			System.out.println("Login Successfuly");
+			AdminMainMenu.displayString("Login Successfuly \n");
 			AdminMainMenu.load();
 		}
 		else{
-			System.out.println("Login Fail");
+			AdminMainMenu.displayString("Login Fail\n");
 			MainMenu.load();
 		}
     }
@@ -157,11 +157,11 @@ public class Admin_Controller {
         boolean status = addAdmin(Username, Password);
 
 		if(status){
-			System.out.println("Sign Up Successfuly");
+			AdminMainMenu.displayString("Sign Up Successfuly \n");
 			AdminMainMenu.load();
 		}
 		else{
-			System.out.println("Admin Existed");
+			AdminMainMenu.displayString("Admin Existed \n");
             MainMenu.load();
 		}
     }
@@ -170,9 +170,8 @@ public class Admin_Controller {
 	 * Config Setting method that take input from admin side
 	 */
     public static void configSetting(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("-----------Configure System---------");
-        System.out.println("Choose from one of the following options: \n" +
+        AdminMainMenu.displayString("-----------Configure System---------\n");
+        AdminMainMenu.displayString("Choose from one of the following options: \n" +
                 "1. Update Ticket Price \n" + 
                 "2. Holidays \n" +
                 "3. Back \n");

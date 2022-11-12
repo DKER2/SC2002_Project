@@ -68,7 +68,7 @@ public class Cineplex_Controller {
 
         if(exist==false){
             cineplexList.add(cineplex);
-            System.out.println("Added Cineplex Sucessfully");
+            AdminMainMenu.displayString("Added Cineplex Sucessfully\n");
             SerializeDB.writeSerializedObject(FILENAME, cineplexList);
         }
 
@@ -91,7 +91,7 @@ public class Cineplex_Controller {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         for(int i=0; i<cineplexList.size(); i++){
             Cineplex tmp = cineplexList.get(i);
-            System.out.print((i+1) + "." + tmp.getCineplexName() + "\n");
+            AdminMainMenu.displayString((i+1) + "." + tmp.getCineplexName() + "\n");
             displayShowTimeOfCineplex(tmp);
         }
     }
@@ -105,7 +105,7 @@ public class Cineplex_Controller {
         ArrayList<Cinema> cinemaList = cineplex.getCinema();
         for(int j=0; j<cinemaList.size(); j++){
             Cinema cinema = cinemaList.get(j);
-            System.out.print((j+1) + "." + cinema.getCinemaCode() + "\n");
+            AdminMainMenu.displayString((j+1) + "." + cinema.getCinemaCode() + "\n");
             displayShowTimeOfCinema(cinema);
         }
     }
@@ -124,29 +124,29 @@ public class Cineplex_Controller {
             }
         });
 
-        System.out.println("----------------------------");
+        AdminMainMenu.displayString("----------------------------\n");
         for(int k=0; k<showTimeList.size(); k++){
-            System.out.print((k+1) + "." + dateFormat.format(showTimeList.get(k).getShowTime()));
+            AdminMainMenu.displayString((k+1) + "." + dateFormat.format(showTimeList.get(k).getShowTime()) + "\n");
             if(dateFormat.format(showTimeList.get(k).getShowTime()).length() <= 40){
                 for(int u=0; u<40-dateFormat.format(showTimeList.get(k).getShowTime()).length(); u++){
-                    System.out.print(" ");
+                    AdminMainMenu.displayString(" ");
                 }
             }
-            System.out.print("|");
+            AdminMainMenu.displayString("|");
         }
 
         System.out.print("\n");
 
         for(int k=0; k<showTimeList.size(); k++){
-            System.out.print(showTimeList.get(k).getMovie().getTitle());
+            AdminMainMenu.displayString(showTimeList.get(k).getMovie().getTitle() + "\n");
             if(showTimeList.get(k).getMovie().getTitle().toString().length() <= 40+2){
                 for(int u=0; u<40-showTimeList.get(k).getMovie().getTitle().toString().length()+2; u++){
-                    System.out.print(" ");
+                    AdminMainMenu.displayString(" ");
                 }
             }
-            System.out.print("|");
+            AdminMainMenu.displayString("|");
         }
-        System.out.print("\n");
+        AdminMainMenu.displayString("\n");
     }
 
     /**
@@ -155,14 +155,14 @@ public class Cineplex_Controller {
     public static void createShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
-        System.out.println("Choose an cineplex to create show time");
+        AdminMainMenu.displayString("Choose an cineplex to create show time \n");
         int cineplexIndex = AdminMainMenu.getChoice(cineplexList.size());
 
         Cineplex cineplex  = cineplexList.get(cineplexIndex-1);
 
         displayShowTimeOfCineplex(cineplex);
 
-        System.out.println("Choose an cinema to create show time");
+        AdminMainMenu.displayString("Choose an cinema to create show time \n");
         int cinemaIndex = AdminMainMenu.getChoice(cineplex.getCinema().size());
 
         Cinema cinema = cineplex.getCinema().get(cinemaIndex-1);
@@ -171,15 +171,15 @@ public class Cineplex_Controller {
 
         int movieIndex = AdminMainMenu.getMovieIndexFromTerminal();
         Movie movie = Movie_Controller.getAllShowingMovies().get(movieIndex);
-        System.out.println(movie.getTitle());
+        AdminMainMenu.displayString(movie.getTitle() + "\n");
         
-        System.out.println("Type in Date");
+        AdminMainMenu.displayString("Type in Date \n");
         SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy HH:mm");  
         Date time = new Date();
         try{
             time = formatter1.parse(AdminMainMenu.getString());
         }catch(Exception ex){
-            System.out.println("Please Follow Datetime format dd/MM/yyyy HH:mm");
+            AdminMainMenu.displayString("Please Follow Datetime format dd/MM/yyyy HH:mm \n");
             createShowTime();
         }
 
@@ -198,40 +198,41 @@ public class Cineplex_Controller {
     public static void updateShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
-        System.out.println("Choose an cineplex to change");
+        AdminMainMenu.displayString("Choose an cineplex to change \n");
         int cineplexIndex = AdminMainMenu.getChoice(cineplexList.size())-1;
 
         Cineplex cineplex  = cineplexList.get(cineplexIndex);
 
         displayShowTimeOfCineplex(cineplex);
 
-        System.out.println("Choose an cinema to change");
+        AdminMainMenu.displayString("Choose an cinema to change \n");
         int cinemaIndex = AdminMainMenu.getChoice(cineplex.getCinema().size())-1;
 
         Cinema cinema = cineplex.getCinema().get(cinemaIndex);
 
-        displayShowTimeOfCinema(cinema);
-
+        
         if(cinema.getShowTimeList().size()==0){
-            System.out.println("There is no show time to update in this cinema");
+            AdminMainMenu.displayString("There is no show time to update in this cinema\n");
             updateShowTime();
             return;
         }
+        
+        displayShowTimeOfCinema(cinema);
 
-        System.out.println("Choose an showtime to change");
+        AdminMainMenu.displayString("Choose an showtime to change");
         int showTimeIndex = AdminMainMenu.getChoice(cinema.getShowTimeList().size())-1;
 
         ShowTime showTime = cinema.getShowTimeList().get(showTimeIndex);
 
-        System.out.println("---------Choose following option to change--------\n"
+        AdminMainMenu.displayString("---------Choose following option to change--------\n"
             +"1. Movie\n"+
             "2. Date \n"+
-            "3. Go back");
+            "3. Go back\n");
         int choice = AdminMainMenu.getChoice(3);
 
         switch(choice){
             case 1:
-                System.out.println("Choose a movie to subtitue into time slot");
+                AdminMainMenu.displayString("Choose a movie to subtitue into time slot\n");
                 int movieIndex = AdminMainMenu.getMovieIndexFromTerminal();
                 showTime.setMovie(Movie_Controller.getAllMovies().get(movieIndex));
                 cineplex.updateShowTime(cinema.getCinemaCode(), showTime, showTimeIndex);
@@ -240,13 +241,13 @@ public class Cineplex_Controller {
                 AdminMainMenu.load();
                 break;
             case 2:
-                System.out.println("Type in Date");
+                AdminMainMenu.displayString("Type in Date\n");
                 SimpleDateFormat formatter1=new SimpleDateFormat("dd/mm/yyyy");  
                 Date time = new Date();
                 try{
                     time = formatter1.parse(AdminMainMenu.getString());
                 }catch(Exception ex){
-                    System.out.println("Please Follow Datetime format dd/MM/YYYY");
+                    AdminMainMenu.displayString("Please Follow Datetime format dd/MM/YYYY\n");
                     createShowTime();
                 }
                 showTime.setShowTime(time);
@@ -270,27 +271,27 @@ public class Cineplex_Controller {
     public static void removeShowTime(){
         displayShowTimeOfAllCineplex();
         ArrayList<Cineplex> cineplexList = getAllCineplexs();
-        System.out.println("Choose an cineplex to remove an showtime");
+        AdminMainMenu.displayString("Choose an cineplex to remove an showtime\n");
         int cineplexIndex = AdminMainMenu.getChoice(cineplexList.size())-1;
 
         Cineplex cineplex  = cineplexList.get(cineplexIndex);
 
         displayShowTimeOfCineplex(cineplex);
 
-        System.out.println("Choose an cinema to remove an showtime");
+        AdminMainMenu.displayString("Choose an cinema to remove an showtime\n");
         int cinemaIndex = AdminMainMenu.getChoice(cineplex.getCinema().size())-1;
 
         Cinema cinema = cineplex.getCinema().get(cinemaIndex);
 
         if(cinema.getShowTimeList().size()==0){
-            System.out.println("There is no show time to remove in this cinema, try again");
+            AdminMainMenu.displayString("There is no show time to remove in this cinema, try again\n");
             removeShowTime();
             return;
         }
 
         displayShowTimeOfCinema(cinema);
 
-        System.out.println("Choose an showtime to remove");
+        AdminMainMenu.displayString("Choose an showtime to remove");
         int showTimeIndex = AdminMainMenu.getChoice(cinema.getShowTimeList().size())-1;
 
         cineplex.removeShowTime(cinema.getCinemaCode(), showTimeIndex);
@@ -308,8 +309,8 @@ public class Cineplex_Controller {
         Cineplex_Controller.displayShowTimeOfAllCineplex();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("-----------Create/Update/Remove Show Time-----------");
-        System.out.println("Choose from one of the following options: \n" +
+        AdminMainMenu.displayString("-----------Create/Update/Remove Show Time-----------\n");
+        AdminMainMenu.displayString("Choose from one of the following options: \n" +
                 "1. Create \n" + 
                 "2. Update \n" +
                 "3. Remove \n"+

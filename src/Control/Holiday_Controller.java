@@ -57,7 +57,7 @@ public class Holiday_Controller {
 
         if(exist==false){
             HolidayList.add(Holiday);
-            System.out.println("Added Holiday Sucessfully");
+            AdminMainMenu.displayString("Added Holiday Sucessfully\n");
             SerializeDB.writeSerializedObject(FILENAME, HolidayList);
         }
 
@@ -77,39 +77,39 @@ public class Holiday_Controller {
 	 */
     public static void configureHolidays(){
         ArrayList<Holiday> holidayList = Holiday_Controller.getAllHolidays();
-        System.out.println("Holiday List:");
+        AdminMainMenu.displayString("Holiday List:\n");
         for(int i=0; i<holidayList.size(); i++){
-            System.out.println((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime());
+            AdminMainMenu.displayString((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime()+"/n");
         }
 
-        System.out.println("----------Holiday Configure---------");
-        System.out.println("1. Update date \n"+
+        AdminMainMenu.displayString("----------Holiday Configure---------\n");
+        AdminMainMenu.displayString("1. Update date \n"+
         "2. Add date \n"+
-        "3. Go back");
+        "3. Go back\n");
         int choice = AdminMainMenu.getChoice(3);
         
         switch(choice){
             case 1:
                 if(holidayList.size()==0){
-                    System.out.println("There are no holiday to update");
+                    AdminMainMenu.displayString("There are no holiday to update\n");
                     break;
                 }
-                System.out.println("----------Holiday Configure---------");
-                System.out.println("Holiday List:");
+                AdminMainMenu.displayString("----------Holiday Configure---------\n");
+                AdminMainMenu.displayString("Holiday List:\n");
                 for(int i=0; i<holidayList.size(); i++){
-                    System.out.println((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime());
+                    AdminMainMenu.displayString((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime() + "\n");
                 }
                 choice = AdminMainMenu.getChoice(holidayList.size()+1);
 
-                System.out.println("----------Holiday Configure---------");
-                System.out.println("1. Update name of holiday \n"+
+                AdminMainMenu.displayString("----------Holiday Configure---------\n");
+                AdminMainMenu.displayString("1. Update name of holiday \n"+
                 "2. Update date \n"+
-                "3. Go back");
+                "3. Go back\n");
 
                 int choice1 = AdminMainMenu.getChoice(3);
 
                 if(choice1==1){
-                    System.out.println("Type in new Holiday name");
+                    AdminMainMenu.displayString("Type in new Holiday name\n");
                     String name = AdminMainMenu.getString();
                     Holiday changeHoliday = holidayList.get(choice-1);
                     changeHoliday.setName(name);
@@ -118,7 +118,7 @@ public class Holiday_Controller {
                     configureHolidays();
                 }
                 else if (choice1==2){
-                    System.out.println("Type in new Holiday date");
+                    AdminMainMenu.displayString("Type in new Holiday date\n");
                     SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
                     Date time = new Date();
                     try{
@@ -129,7 +129,7 @@ public class Holiday_Controller {
                         SerializeDB.writeSerializedObject(FILENAME, holidayList);
                         configureHolidays();
                     }catch(Exception ex){
-                        System.out.println("Follow Datetime format dd/MM/YYYY");
+                        AdminMainMenu.displayString("Follow Datetime format dd/MM/YYYY\n");
                     }
                 }
                 else{
@@ -139,23 +139,23 @@ public class Holiday_Controller {
                 break;
 
             case 2:
-                System.out.println("----------Holiday Configure---------");
-                System.out.println("Type in new Holiday name");
+                AdminMainMenu.displayString("----------Holiday Configure---------\n");
+                AdminMainMenu.displayString("Type in new Holiday name\n");
                 String name = AdminMainMenu.getString();
-                System.out.println("Type in Date");
+                AdminMainMenu.displayString("Type in Date\n");
                 SimpleDateFormat formatter1=new SimpleDateFormat("dd/MM/yyyy");  
                 Date time = new Date();
                 try{
                     time = formatter1.parse(AdminMainMenu.getString());
                     Holiday_Controller.addHoliday(name, time);
                     holidayList = Holiday_Controller.getAllHolidays();
-                    System.out.println("Holiday List:");
+                    AdminMainMenu.displayString("Holiday List:\n");
                     for(int i=0; i<holidayList.size(); i++){
-                        System.out.println((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime());
+                        AdminMainMenu.displayString((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime() + "\n");
                     }
                     configureHolidays();
                 }catch(Exception ex){
-                    System.out.println("Follow Datetime format dd/MM/YYYY");
+                    AdminMainMenu.displayString("Follow Datetime format dd/MM/YYYY \n");
                 }
                 break;
             case 3:
