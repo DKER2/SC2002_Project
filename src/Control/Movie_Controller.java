@@ -272,7 +272,8 @@ public class Movie_Controller {
 
         for (int i = 0; i < movieList.size(); i++) {
             if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING)
-            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
+            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)
+            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.PREVIEW)){
                 showingMovieList.add(movieList.get(i));
             }
         }
@@ -315,7 +316,9 @@ public class Movie_Controller {
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
         
         for (int i = 0; i < movieList.size(); i++) {
-            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING) || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
+            if(movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING) 
+            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)
+            || movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.PREVIEW)){
                 showingMovieList.add(movieList.get(i));
             }
         }
@@ -339,7 +342,8 @@ public class Movie_Controller {
 
         for(int i=0; i<movieList.size(); i++){
             if(movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.NOWSHOWING) ||
-            movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON)){
+            movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.COMINGSOON) ||
+            movieList.get(i).getTitle().toLowerCase().contains(searchString.toLowerCase()) && movieList.get(i).getShowingStatus().equals(CONSTANTS.ShowingStatus.PREVIEW)){
                 searchResults.add(movieList.get(i));
             }
         }
