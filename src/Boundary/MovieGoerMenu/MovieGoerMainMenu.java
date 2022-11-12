@@ -15,7 +15,7 @@ public class MovieGoerMainMenu {
 		System.out.println("Choose from one of the following options: \n" +
 				"1. List movie \n" + 
                 "2. Search movie \n" +
-                "3. View Details of Moive \n"  +
+                "3. View Details of Movie \n"  +
 				"4. Book and purchase ticket\n" +
                 "5. View Booking History \n"+
                 "6. List Top 5 ranking by ticket sales OR by overall reviewers' ratings\n" +

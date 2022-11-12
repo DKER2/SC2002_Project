@@ -25,7 +25,6 @@ public class Booking implements Serializable {
 
         Date date = new Date();
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMddhhmm");
-        System.out.println(dt1.format(date));
         this.transactionId = cinema.getCinemaCode() + dt1.format(date);
     }
 

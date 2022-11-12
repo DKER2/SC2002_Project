@@ -126,9 +126,9 @@ public class Cineplex_Controller {
 
         AdminMainMenu.displayString("----------------------------\n");
         for(int k=0; k<showTimeList.size(); k++){
-            AdminMainMenu.displayString((k+1) + "." + dateFormat.format(showTimeList.get(k).getShowTime()) + "\n");
-            if(dateFormat.format(showTimeList.get(k).getShowTime()).length() <= 40){
-                for(int u=0; u<40-dateFormat.format(showTimeList.get(k).getShowTime()).length(); u++){
+            AdminMainMenu.displayString((k+1) + "." + dateFormat.format(showTimeList.get(k).getShowTime()));
+            if(dateFormat.format(showTimeList.get(k).getShowTime()).length() <= 20){
+                for(int u=0; u<20-dateFormat.format(showTimeList.get(k).getShowTime()).length(); u++){
                     AdminMainMenu.displayString(" ");
                 }
             }
@@ -138,9 +138,9 @@ public class Cineplex_Controller {
         System.out.print("\n");
 
         for(int k=0; k<showTimeList.size(); k++){
-            AdminMainMenu.displayString(showTimeList.get(k).getMovie().getTitle() + "\n");
-            if(showTimeList.get(k).getMovie().getTitle().toString().length() <= 40+2){
-                for(int u=0; u<40-showTimeList.get(k).getMovie().getTitle().toString().length()+2; u++){
+            AdminMainMenu.displayString(showTimeList.get(k).getMovie().getTitle());
+            if(showTimeList.get(k).getMovie().getTitle().toString().length() <= 20+2){
+                for(int u=0; u<20-showTimeList.get(k).getMovie().getTitle().toString().length()+2; u++){
                     AdminMainMenu.displayString(" ");
                 }
             }
