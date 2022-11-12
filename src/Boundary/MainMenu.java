@@ -31,7 +31,7 @@ public class MainMenu {
 				MovieGoerSignUp.load();
 				break;
 			case 3:
-                AdminLogin.load();
+                		AdminLogin.load();
 				break;
 			case 4:
 				AdminSignUp.load();
