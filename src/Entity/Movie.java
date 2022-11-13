@@ -3,10 +3,13 @@ package src.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * This class contains all the information of a Movie
- */
 
+/**
+ This class contains all the information of a Movie
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Movie implements Serializable{
     private static final long serialVersionUID = 4L;
     /**

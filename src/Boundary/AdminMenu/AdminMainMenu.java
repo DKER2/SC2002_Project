@@ -45,6 +45,9 @@ public class AdminMainMenu {
         }
 	}
     
+     /**
+     * Get Update Option from UI
+     */
     public static int getUpdateOptionFromTerminal(){
         Scanner input = new Scanner(System.in);
 
@@ -61,6 +64,9 @@ public class AdminMainMenu {
         return choice;
     }
 
+     /**
+     * Get Showing Movie Index from UI
+     */
     public static int getShowingMovieIndexFromTerminal(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
         ArrayList<Movie> showingMovieList = new ArrayList<Movie>();
@@ -91,6 +97,9 @@ public class AdminMainMenu {
         return index;
     }
 
+     /**
+     * Get Movie Index from UI
+     */
     public static int getMovieIndexFromTerminal(){
         ArrayList<Movie> movieList = Movie_Controller.getAllMovies();
 
@@ -115,6 +124,9 @@ public class AdminMainMenu {
         return index;
     }
 
+     /**
+     * Get Movie Title from UI
+     */
     public static String getTitleFromTerminal(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Type In Title:");
@@ -123,6 +135,9 @@ public class AdminMainMenu {
         return title;
     }
 
+     /**
+     * Get Movie Synopsis from UI
+     */
     public static String getSynopsisFromTerminal() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Type In abstract:");
@@ -131,6 +146,9 @@ public class AdminMainMenu {
         return synopsis;
     }
 
+    /**
+     * Get Director from UI
+     */
     public static String getDirectorFromTerminal() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Type In director:");
@@ -139,6 +157,9 @@ public class AdminMainMenu {
         return director;
     }
 
+    /**
+     * Get Movie Actor List from UI
+     */
     public static ArrayList<String> getActorListFromTerminal() {
         ArrayList<String> cast = new ArrayList<String>();
         
@@ -155,6 +176,9 @@ public class AdminMainMenu {
         return cast;
     }
 
+    /**
+     * Get Movie Showing Status from UI
+     */
     public static CONSTANTS.ShowingStatus getShowingStatusFromTerminal(){
         Scanner sc = new Scanner(System.in);
         System.out.println("==== Please choose showing status ====");
@@ -185,6 +209,9 @@ public class AdminMainMenu {
         return showingStatus;
     } 
 
+    /**
+     * Get Movie Censorship from UI
+     */
     public static CONSTANTS.Censorship getCensorshipFromTerminal(){
         Scanner sc = new Scanner(System.in);
         System.out.println("==== Please choose Censorship status ====");
@@ -223,6 +250,9 @@ public class AdminMainMenu {
         return censorStatus;
     } 
 
+    /**
+     * Get Type of Movie from UI
+     */
     public static CONSTANTS.TypeOfMovie getTypeOfMovieFromTerminal(){
         Scanner sc = new Scanner(System.in);
         System.out.println("==== Please choose type of movie ====");
@@ -249,6 +279,10 @@ public class AdminMainMenu {
         return censorStatus;
     } 
 
+    /**
+     * Get Choice from UI
+     * @param max maximum possible of choice
+     */
     public static int getChoice(int max){
         System.out.println("Type your choice: ");
         Scanner sc = new Scanner(System.in);
@@ -260,12 +294,18 @@ public class AdminMainMenu {
         return choice;
     }
 
+    /**
+     * Get String from UI
+     */
     public static String getString(){
         Scanner sc = new Scanner(System.in);
         String searchString = sc.nextLine();
         return searchString;
     }
 
+    /**
+     * Display String to UI
+     */
     public static void displayString(String string){
         System.out.print(string);
     }

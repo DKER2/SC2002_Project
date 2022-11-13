@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import src.Entity.CONSTANTS.ClassOfCinema;
 
+/**
+ Represents a Cinema that have seat layout and include an showtime list.
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Cinema implements Serializable{
 	private static final long serialVersionUID = 10L;
 	

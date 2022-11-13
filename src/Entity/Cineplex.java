@@ -3,6 +3,12 @@ package src.Entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ Represents a cineplex that have multiple cinema.
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Cineplex implements Serializable{
 
 	private static final long serialVersionUID = 1L;

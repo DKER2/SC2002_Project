@@ -3,6 +3,12 @@ package src.Entity;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ Represents a Holiday that have date of holiday and name of it.
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Holiday implements Serializable{
     private static final long serialVersionUID = 5L;
 

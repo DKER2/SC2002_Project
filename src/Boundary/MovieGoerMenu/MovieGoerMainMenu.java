@@ -62,7 +62,9 @@ public class MovieGoerMainMenu {
     }
 
    
-
+    /**
+     * Get Search String from UI
+     */
     public static String getSearchString(){
         System.out.println("Type in the title of movie you want to search: ");
         Scanner sc = new Scanner(System.in);
@@ -70,6 +72,10 @@ public class MovieGoerMainMenu {
         return searchString;
     }
 
+    /**
+     * Get choice from UI
+     * @param max maximum possible of choice
+     */
     public static int getChoice(int max){
         System.out.println("Type your choice: ");
         Scanner sc = new Scanner(System.in);
@@ -81,6 +87,9 @@ public class MovieGoerMainMenu {
         return choice;
     }
 
+    /**
+     * Display String to UI
+     */
     public static void displayString(String string){
         System.out.print(string);
     }

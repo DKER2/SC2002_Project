@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ Represents a Booking that have showtime information.
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Booking implements Serializable {
     private static final long serialVersionUID = 9L;
 

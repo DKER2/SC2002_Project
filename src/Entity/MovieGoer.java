@@ -3,6 +3,12 @@ package src.Entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ Represent a MovieGoer
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class MovieGoer extends User{
     private static final long serialVersionUID = 3L;
 

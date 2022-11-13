@@ -4,6 +4,12 @@ import java.util.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
+/**
+ This class contains all the information of a showtime
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class ShowTime implements Serializable{
     private static final long serialVersionUID = 8L;
 

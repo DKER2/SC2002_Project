@@ -1,6 +1,12 @@
 package src.Entity;
 import java.io.Serializable;
 
+/**
+ This class contains all the information of a seat
+ @author SE4G4
+ @version 1.0
+ @since 2022-11-09
+*/
 public class Seat implements Serializable{
     private static final long serialVersionUID = 6L;
 
