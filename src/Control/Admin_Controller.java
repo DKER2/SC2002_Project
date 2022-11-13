@@ -177,7 +177,7 @@ public class Admin_Controller {
                 "3. Configure Accessibility of Top 5 Listing \n" +
                 "4. Back \n");
         
-        int choice = AdminMainMenu.getChoice(3);
+        int choice = AdminMainMenu.getChoice(4);
 
         switch(choice){
             case 1:

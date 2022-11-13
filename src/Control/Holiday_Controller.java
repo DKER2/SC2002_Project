@@ -77,12 +77,12 @@ public class Holiday_Controller {
 	 */
     public static void configureHolidays(){
         ArrayList<Holiday> holidayList = Holiday_Controller.getAllHolidays();
-        AdminMainMenu.displayString("Holiday List:\n");
+        AdminMainMenu.displayString("Holiday List:");
         for(int i=0; i<holidayList.size(); i++){
-            AdminMainMenu.displayString((i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime()+"/n");
+            AdminMainMenu.displayString("\n" + (i+1) + "." + holidayList.get(i).getName() + "     " + holidayList.get(i).getDatetime());
         }
 
-        AdminMainMenu.displayString("----------Holiday Configure---------\n");
+        AdminMainMenu.displayString("\n----------Holiday Configure---------\n");
         AdminMainMenu.displayString("1. Update date \n"+
         "2. Add date \n"+
         "3. Go back\n");
